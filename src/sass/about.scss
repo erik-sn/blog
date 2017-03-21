@@ -1,0 +1,28 @@
+@import "./style";
+
+.about__container {
+  @include fluid-type(37.5rem, 90rem, $h4-min, $h4-max);
+  color: $primary;
+  margin-top: 20px;
+
+  a {
+    text-decoration: none;
+    color: $link;
+
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.about__profile-picture {
+  float: left;
+  padding: 0px 15px 15px 0px;
+
+  @media (max-width: 550px) {
+    float: none;
+    text-align: center;
+    margin-top: 15px;
+  }
+}
