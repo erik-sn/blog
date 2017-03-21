@@ -1,0 +1,32 @@
+@import "./style";
+
+.contact__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+
+  .social_sidebar__link {
+    padding: 0px 10px;
+
+    transition: 0.15s ease-in-out;
+  }
+
+  .social_sidebar__link:hover {
+    transform: scale(1.1);
+  }
+}
+
+.contact__social-media {
+  display: flex;
+  flex-direction: row;
+  margin: 35px 0px;
+}
+
+.contact__lower-container {
+  margin-bottom: 15px;
+}
+
+.contact__email {
+  color: $primary;
+}

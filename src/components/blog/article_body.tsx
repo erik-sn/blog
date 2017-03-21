@@ -5,6 +5,7 @@ import connect from '../../utils/connect';
 import { IReduxState } from '../../constants/interfaces';
 import Article from '../../models/article';
 import ArticleInfo from './article_info';
+import TagList from './tag_list';
 
 export interface IArticleBodyProps {
   activeArticle: Article;
@@ -17,6 +18,7 @@ const ArticleBody = ({ activeArticle }: IArticleBodyProps) => {
   return (
     <section className="article_body__container" >
       <h2>{activeArticle.title}</h2>
+      <TagList article={activeArticle} />
       <ArticleInfo article={activeArticle} />
       {activeArticle.text}
     </section>

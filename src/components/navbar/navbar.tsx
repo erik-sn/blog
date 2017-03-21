@@ -11,24 +11,52 @@ import NavbarLogo from './navbar_logo';
 import NavbarSearch from './navbar_search';
 
 export interface INavbarProps { route?: string; }
-export interface INavbarState { searchActive: boolean; }
+export interface INavbarState {
+  minimize: boolean;
+  searchActive: boolean;
+}
 
 @connect(mapStateToProps)
 class Navbar extends React.Component<INavbarProps, INavbarState> {
 
+  public minimizeStyle: any = {
+    height: '40px',
+    opacity: '0.7',
+  };
+
+  public standardStyle: any = {
+    height: '60px',
+    opacity: '0.85',
+  };
+
   constructor(props: INavbarProps) {
     super(props);
     this.state = {
+      minimize: false,
       searchActive: false,
     };
     this.toggleSearch = this.toggleSearch.bind(this);
   }
 
+  public componentDidMount(): void {
+    const container = document.getElementById('application__child-container');
+    container.addEventListener('scroll', () => {
+      const minimize = this.state.minimize;
+      const scroll = container.scrollTop;
+      if (container.scrollTop > 40 && !minimize) {
+        this.setState({ minimize: true });
+      } else if (container.scrollTop <= 40 && minimize) {
+        this.setState({ minimize: false });
+      }
+    });
+  }
+
   public render() {
+    const { minimize, searchActive } = this.state;
     const { route } = this.props;
-    const navbarParams = { route, hide: !this.state.searchActive };
+    const navbarParams = { route, hide: !searchActive };
     return (
-      <nav className="navbar__container">
+      <nav className="navbar__container" style={minimize ? this.minimizeStyle : this.standardStyle} >
         <NavbarSearch toggleSearch={this.toggleSearch} active={this.state.searchActive} />
         <div
           id="navbar__items"
@@ -36,7 +64,6 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
         >
           <NavbarItem to="/" icon="home" label="home" {...navbarParams} />
           <NavbarItem to="/sandbox" icon="widgets" label="sandbox" {...navbarParams} />
-          <NavbarItem to="/portfolio" icon="book" label="portfolio" {...navbarParams} />
           <NavbarItem to="/about" icon="info" label="about" {...navbarParams} />
           <NavbarItem to="/contact" icon="email" label="contact" {...navbarParams} />
         </div>
@@ -58,3 +85,5 @@ function mapStateToProps(state: IReduxState) {
 }
 
 export default Navbar;
+
+// <NavbarItem to="/portfolio" icon="book" label="portfolio" {...navbarParams} />

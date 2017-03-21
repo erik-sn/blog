@@ -2,7 +2,7 @@ import { HOME_URL } from '../../constants/types';
 import Article from '../../models/article';
 import ArticleBody from './article_body';
 import ArticleInfo from './article_info';
-import TagDisplay from './tag_display';
+import TagList from './tag_list';
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
@@ -21,10 +21,7 @@ const ArticleDescription = ({ article }: IArticleProps) => (
         <div className="article_description__description">{article.description}</div>
       </div>
     </Link>
-    <div className="article_description__tags">
-      <i className="material-icons">local_offer</i>
-      {article.tags.map((tag) => <TagDisplay tag={tag} />)}
-    </div>
+    <TagList article={article} />
   </div>
 );
 

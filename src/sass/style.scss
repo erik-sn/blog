@@ -4,7 +4,7 @@ $link: #09c;
 
 @font-face {
   font-family: 'geomanist';
-  src: URL('dist/geomanist.ttf') format ('ttf');
+  src: URL('http://localhost:3000/dist/geomanist.ttf') format ('ttf');
 }
 
 body {
@@ -14,9 +14,10 @@ body {
   z-index: 1;
   overflow-y: hidden;
 
-  background-image: URL('dist/expaod.gif');
+  background-image: URL('http://localhost:3000/dist/gearbox_cleaned.png');
+  background-position-y: calc(100vh - 650px);
+  background-position-x: 10vw;
   background-repeat: no-repeat;
-  background-position: 0% -500px;
 }
 
 a {
@@ -33,7 +34,7 @@ a {
   z-index: 1;
   width: 100%;
   overflow-y: auto;
-  padding-top: 56px;
+  padding-top: 55px;
 
   display: flex;
   align-items: center;
@@ -42,15 +43,11 @@ a {
 
 #application__inner-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
   min-width: 300px;
-  height: calc(100vh);
+  height: calc(100vh - 80px);
   position: relative;
-
-  section {
-    padding: 0px 60px;
-  }
-
+  margin: 0px 60px 25px 60px;
 }
 
 // Change scale

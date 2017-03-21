@@ -2,6 +2,7 @@ import * as moment from 'moment';
 import Tag from './tag';
 
 interface IArticleConstructor {
+  active?: boolean;
   id: number;
   title: string;
   description: string;
@@ -12,6 +13,7 @@ interface IArticleConstructor {
 
 class Article {
 
+  public active: boolean = true;
   public id: number;
   public title: string;
   public urlTitle: string;
@@ -22,7 +24,7 @@ class Article {
   public tags: Tag[];
   private dateString: string;
 
-  constructor({ id, title, description, date, text, tags }: IArticleConstructor) {
+  constructor({ id, title, description, date, text, tags, active }: IArticleConstructor) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -32,10 +34,14 @@ class Article {
     this.dateString = date;
     this.date = moment(date);
     this.urlTitle = this.formatForUrl(title);
+    if (active !== undefined) {
+      this.active = active;
+    }
   }
 
   public clone(): this {
     return new (this.constructor as typeof Article)({
+      active: this.active,
       date: this.dateString,
       description: this.description,
       id: this.id,
@@ -47,6 +53,7 @@ class Article {
 
   public stringify(): any {
     const objectData = {
+      active: this.active,
       date: this.dateString,
       description: this.description,
       id: this.id,

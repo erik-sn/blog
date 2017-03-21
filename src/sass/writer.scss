@@ -2,11 +2,20 @@
 
 .writer__container {
   z-index: 1;
-  margin-left: -250px;
-  width: calc(100% + 500px);
+  margin-left: -400px;
+  width: calc(100% + 800px);
   height: 80vh;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+    margin-left: 0px;
+
+    #edit_box__text {
+      height: 600px;
+    }
+  }
 
   button {
     background: $primary;
@@ -38,6 +47,10 @@
   flex-wrap: nowrap;
   height: 100%;
 
+  @media (max-width: 1300px) {
+    flex-direction: column;
+  }
+
   h2 {
     margin: 5px 0px !important;
   }
@@ -57,6 +70,7 @@
   textarea {
     resize: none;
     height: 100%;
+    margin-bottom: 5px;
   }
 }
 

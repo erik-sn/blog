@@ -36,7 +36,7 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
   });
 
   public defaultState: IWriterState = {
-    article: this.emptyArticle,
+    article: undefined,
     mode: 'create',
     showArticleModal: false,
   };
@@ -47,33 +47,46 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     this.handleClear = this.handleClear.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleToggleModal = this.handleToggleModal.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   public componentDidMount() {
-    const article = JSON.parse(localStorage.getItem('writer_form'));
-    if (article) {
-      this.setState({...this.state, article: new Article(article) });
-    }
+    this.parseLocalStorageArticle();
   }
 
   public componentWillReceiveProps(nextProps: IWriterProps) {
     if (nextProps.match.params && !nextProps.match.params.title) {
-      this.setState({ article: this.emptyArticle });
+      this.parseLocalStorageArticle();
     } else if (nextProps.activeArticle) {
       this.setState({ article: nextProps.activeArticle });
     }
   }
 
+  public parseLocalStorageArticle(): void {
+    const articleObject = JSON.parse(localStorage.getItem('writer_form'));
+    if (articleObject) {
+      this.setState({ article: new Article(articleObject) });
+    } else {
+      this.setState({ article: this.emptyArticle });
+    }
+  }
+
   public renderButtons(): JSX.Element {
     if (this.props.activeArticle) {
-      return <button name="update">Update</button>;
+      return <button name="update" onClick={this.handleUpdate} >Update</button>;
     }
-    return <button name="submit">Submit</button>;
+    return <button name="submit" onClick={this.handleSubmit}>Submit</button>;
   }
 
   public handleInputChange({ currentTarget }: React.FormEvent<HTMLInputElement>): void {
     const updatedArticle: any = this.state.article.clone();
-    updatedArticle[currentTarget.name] = currentTarget.value;
+    if (currentTarget.name === 'tags') {
+      const tagNames: string[] = currentTarget.value.replace(/ /g, '').split(',');
+      updatedArticle.tags = tagNames.map((name) => new Tag({ id: -1, name }));
+    } else {
+      updatedArticle[currentTarget.name] = currentTarget.value;
+    }
     this.setState({ article: updatedArticle }, () => {
       localStorage.setItem('writer_form', updatedArticle.stringify());
     });
@@ -88,9 +101,22 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     localStorage.removeItem('writer_form');
   }
 
+  public handleSubmit(): void {
+    console.log('Submitting:');
+    console.log(this.state.article);
+  }
+
+  public handleUpdate(): void {
+    console.log('Updating:');
+    console.log(this.state.article);
+  }
+
   public render(): JSX.Element {
     const { article, mode, showArticleModal } = this.state;
     const { articles, activeArticle } = this.props;
+    if (!article) {
+      return <div>Loading...</div>;
+    }
     return (
       <section className="writer__container" >
         <ArticleModal

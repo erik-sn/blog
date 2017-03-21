@@ -5,10 +5,11 @@
   position: fixed;
   top: 0;
   font-family: 'Lato', 'sans-serif';
-  height: 56px;
   background: $primary;
   width: 100%;
-  opacity: 0.9;
+  opacity: 0.8;
+
+  transition: 0.45s ease-in-out;
 
   @media (max-width: 675px) {
     .navbar__label {
