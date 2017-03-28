@@ -1,4 +1,6 @@
 import Article from '../models/article';
+import Token from '../models/token';
+import User from '../models/user';
 
 /**
  * Redux Interfaces
@@ -23,12 +25,20 @@ export interface IAction {
 export interface IReduxState {
   router: IRouter;
   data: IDataReducer;
+  auth: IAuthReducer;
 }
 
 export interface IDataReducer {
   articles: Article[];
 }
 
+export interface IAuthReducer {
+  token: Token;
+  user: User;
+  error: boolean;
+  errorCode: number;
+  errorText: string;
+}
 
 /* Router */
 interface IRouterLocation {
@@ -41,6 +51,3 @@ interface IRouterLocation {
 interface IRouter {
   location: IRouterLocation;
 }
-
-
-

@@ -13,6 +13,7 @@ import ArticleList from './blog/article_list';
 import Sidebar from './blog/social_sidebar';
 import Contact from './contact';
 import Demo from './demo/demo';
+import Footer from './footer';
 import FourOhFour from './fourohfour';
 import Navbar from './navbar/navbar';
 import NavbarLogo from './navbar/navbar_logo';
@@ -53,6 +54,7 @@ class Application extends React.Component<IApplicationProps, {}> {
               <Route component={FourOhFour} />
             </Switch>
           </div>
+          <Footer />
         </div>
       </div>
     );

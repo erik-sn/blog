@@ -8,6 +8,7 @@ export interface INavbarItemProps {
   label: string;
   route?: string;
   hide?: boolean;
+  minimize?: boolean;
 }
 
 function renderLabel(label: string, width: any): JSX.Element {
@@ -27,7 +28,7 @@ const Navbar = (props: INavbarItemProps): JSX.Element => {
           {(width: any) => renderLabel(props.label, width.value)}
         </Motion>
       </div>
-      <div className={underClass} />
+      <div className={underClass} style={{ marginTop: props.minimize ? '2px' : '0px' }} />
     </Link>
   );
 };

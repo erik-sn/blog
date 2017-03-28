@@ -7,6 +7,8 @@ import connect from '../../utils/connect';
 import { IReduxState } from '../../constants/interfaces';
 import Article from '../../models/article';
 import Tag from '../../models/tag';
+import Token from '../../models/token';
+import User from '../../models/user';
 import ArticleModal from './article_modal';
 import DisplayBox from './display_box';
 import EditBox from './edit_box';
@@ -15,6 +17,8 @@ export interface IWriterProps {
   articles: Article[];
   activeArticle: Article;
   match: any;
+  user: User;
+  token: Token;
 }
 
 export interface IWriterState {
@@ -154,5 +158,7 @@ function mapStateToProps(state: IReduxState, ownProps: any): {} {
   return {
     articles: state.data.articles,
     activeArticle,
+    token: state.auth.token,
+    user: state.auth.user,
   };
 }

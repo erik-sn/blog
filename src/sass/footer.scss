@@ -1,0 +1,13 @@
+@import "./style";
+
+.footer__container {
+  width: 100%;
+  padding: 35px 0px;
+  font-size: 1rem;
+  background: $primary;
+  color: $secondary;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

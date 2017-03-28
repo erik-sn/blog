@@ -73,6 +73,8 @@
 
 .navbar__under {
   width: 0px;
+  margin-top: 2%;
+  
   margin-left: calc(50% - 5px);
   background: $secondary;
   height: 2px;
@@ -234,4 +236,22 @@ $first-speed: 7s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
+}
+
+.login__container-prompt {
+  cursor: pointer;
+  position: absolute;
+  background: $primary;
+  color: $secondary;
+  margin-top: 20px;
+  margin-left: -20px;
+  padding: 5px 10px;
+  opacity: 0.5;
+
+  transition: 0.15s ease-in-out;
+}
+
+.login__container-prompt:hover {
+  opacity: 1;
+  background: lighten($primary, 20%);
 }

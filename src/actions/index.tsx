@@ -1,5 +1,7 @@
+import * as axios from 'axios';
+
 import { IAction } from '../constants/interfaces';
-import { ACTIONS } from '../constants/types';
+import { ACTIONS, API } from '../constants/types';
 
 import Article from '../models/article';
 import Tag from '../models/tag';
@@ -148,5 +150,30 @@ export function fetchArticles(): IAction {
   return {
     payload: [article1, article2, article3, article4, article5],
     type: ACTIONS.FETCH_ARTICLES,
+  };
+}
+
+export function login(code: string): IAction {
+  const request =  axios.post(`${API}/login/${code}/`);
+  return {
+    payload: request,
+    type: ACTIONS.LOGIN,
+  };
+}
+
+export function refresh(accessToken: string, refreshToken: string): IAction {
+  const config = { Authorization: `Bearer github ${accessToken}` };
+  const request = axios.post(`${API}/refresh/${refreshToken}/`);
+  return {
+    payload: request,
+    type: ACTIONS.REFRESH_AUTH,
+  };
+}
+
+export function logout(accessToken: string): IAction {
+  const request =  axios.post(`${API}/logout/${accessToken}/`);
+  return {
+    payload: request,
+    type: ACTIONS.LOGOUT,
   };
 }

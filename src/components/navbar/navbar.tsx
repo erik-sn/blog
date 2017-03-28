@@ -6,6 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import connect from '../../utils/connect';
 
 import { IReduxState } from '../../constants/interfaces';
+import Login from './login';
 import NavbarItem from './navbar_item';
 import NavbarLogo from './navbar_logo';
 import NavbarSearch from './navbar_search';
@@ -54,7 +55,7 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
   public render() {
     const { minimize, searchActive } = this.state;
     const { route } = this.props;
-    const navbarParams = { route, hide: !searchActive };
+    const navbarParams = { route, minimize, hide: !searchActive };
     return (
       <nav className="navbar__container" style={minimize ? this.minimizeStyle : this.standardStyle} >
         <NavbarSearch toggleSearch={this.toggleSearch} active={this.state.searchActive} />
@@ -66,6 +67,9 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
           <NavbarItem to="/sandbox" icon="widgets" label="sandbox" {...navbarParams} />
           <NavbarItem to="/about" icon="info" label="about" {...navbarParams} />
           <NavbarItem to="/contact" icon="email" label="contact" {...navbarParams} />
+          <div className="navbar__item">
+            <Login minimize={minimize} />
+          </div>
         </div>
       </nav>
     );

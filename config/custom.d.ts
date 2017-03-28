@@ -11,7 +11,17 @@ declare module 'autoprefixer' {
   export = _;
 }
 
+declare module 'axios' {
+  const _: any;
+  export = _;
+}
+
 declare module 'invariant' {
+  const _: any;
+  export = _;
+}
+
+declare module 'js-cookie' {
   const _: any;
   export = _;
 }
