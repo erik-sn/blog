@@ -7,7 +7,7 @@ new WebpackDevServer(webpack(configuration), {
   historyApiFallback: true,
   hot: true,  // enable hot reloading
   publicPath: configuration.output.publicPath,
-}).listen(3000, 'localhost', (err: any, result: any) => {
+}).listen(3000, '0.0.0.0', (err: any, result: any) => {
   if (err) {
     return console.log(err);
   }
