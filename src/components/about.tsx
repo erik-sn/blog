@@ -1,6 +1,6 @@
 import { WSAETOOMANYREFS } from 'constants';
-import { childOfKind, isCombinedModifierFlagSet } from 'tslint/lib';
 import * as React from 'react';
+import { childOfKind, isCombinedModifierFlagSet } from 'tslint/lib';
 
 const About = (): JSX.Element => (
   <section className="about__container">

@@ -80,7 +80,6 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
   }
 };
 
-
 function mapStateToProps(state: IReduxState) {
   const { location } = state.router;
   return {

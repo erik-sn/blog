@@ -17,6 +17,8 @@ export default class Token {
   public tokenType: string;
   public created: moment.Moment;
   public createdString: string;
+  public expires: moment.Moment;
+  public expiresString: string;
 
   constructor({ access_token, expires_in, refresh_token, scope, token_type }: ITokenConstructor) {
     this.accessToken = access_token;
@@ -26,6 +28,8 @@ export default class Token {
     this.tokenType = token_type;
     this.created = moment();
     this.createdString = this.created.format('YYYY-MM-DDTHH:MM:SS');
+    this.expires = this.created.add(expires_in, 'seconds');
+    this.expiresString = this.expires.format('YYYY-MM-DDTHH:MM:SS');
   }
 
   public duration(): number {
@@ -36,7 +40,7 @@ export default class Token {
     return JSON.stringify({
       accessToken: this.accessToken,
       created: this.createdString,
-      expiresIn: this.expiresIn,
+      expires: this.expiresString,
       refreshToken: this.refreshToken,
       scope: this.scope,
       tokenType: this.tokenType,

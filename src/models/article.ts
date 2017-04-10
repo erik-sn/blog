@@ -65,7 +65,8 @@ class Article {
   }
 
   private formatForUrl(title: string): string {
-    return title.toLowerCase().replace(/ /g, '-');
+    const removeSpaces = title.toLowerCase().replace(/ /g, '-');
+    return removeSpaces.replace(/[^0-9a-zA-Z\-]+/g, '');
   }
 
 }

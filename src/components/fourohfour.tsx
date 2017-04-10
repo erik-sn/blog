@@ -11,4 +11,3 @@ const Fourohfour = ({}: IFourohfourProps) => (
 );
 
 export default Fourohfour;
-

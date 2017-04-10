@@ -19,6 +19,6 @@ const ArticleInfo = ({ article }: IArticleInfoProps) => {
       <span className="article_description__timetoread">{article.timeToRead} min read</span>
     </div>
   );
-}
+};
 
 export default ArticleInfo;

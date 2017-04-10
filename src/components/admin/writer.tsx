@@ -1,3 +1,4 @@
+import * as axios from 'axios';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { Link } from 'react-router-dom';
 import connect from '../../utils/connect';
 
 import { IReduxState } from '../../constants/interfaces';
+import { API } from '../../constants/types';
 import Article from '../../models/article';
 import Tag from '../../models/tag';
 import Token from '../../models/token';
@@ -106,8 +108,12 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
   }
 
   public handleSubmit(): void {
-    console.log('Submitting:');
-    console.log(this.state.article);
+    const { user, token } = this.props;
+    const article = Object.assign({}, this.state.article, {
+      owner: user.id,
+    });
+    // tslint:disable-next-line:no-string-literal
+    axios.post(`${API}/articles/`, article);
   }
 
   public handleUpdate(): void {

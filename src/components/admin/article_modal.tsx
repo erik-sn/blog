@@ -37,4 +37,3 @@ const ArticleModal = ({ articles, closeModal, visible }: IArticleModalProps) => 
 };
 
 export default ArticleModal;
-

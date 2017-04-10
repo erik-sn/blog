@@ -19,7 +19,6 @@ import Navbar from './navbar/navbar';
 import NavbarLogo from './navbar/navbar_logo';
 import Portfolio from './portfolio/portfolio';
 
-
 export interface IApplicationProps {
   fetchArticles?: () => IAction;
 }

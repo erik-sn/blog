@@ -11,10 +11,10 @@ const tag2 = { id: 2, name: 'tag2' };
 const tag3 = { id: 3, name: 'tag3' };
 
 const article1 = new Article({
-  id: 1,
-  title: 'This is a test1',
-  description: 'An update on one other thing',
   date: '2017-03-01T12:30:00',
+  description: 'An update on one other thing',
+  id: 1,
+  tags: [tag1, tag2, tag3],
   text: `research, pattern systems and user experience. Library and pattern-led design are 
   responsible for sites that could be mistaken for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
@@ -22,14 +22,14 @@ const article1 = new Article({
   of how, it's a question of when. To me, the soul that Andy spoke of is entirely about finding 
   humanity, it’s the same humanity that Aaron Walter spoke about in his book Designing for 
   emotion – it’s about anthropomorphising the web.` ,
-  tags: [tag1, tag2, tag3],
+  title: 'This is a test1',
 });
 
 const article2 = new Article({
-  id: 2,
-  title: 'This is a test2',
-  description: 'An update on one other thing',
   date: '2017-03-13T13:30:00',
+  description: 'An update on one other thing',
+  id: 2,
+  tags: [tag1, tag2, tag3],
   text: `research, pattern systems and user experience. Library and pattern-led design are 
   responsible for sites that could be mistaken for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
@@ -37,17 +37,17 @@ const article2 = new Article({
   of how, it's a question of when. To me, the soul that Andy spoke of is entirely about finding 
   humanity, it’s the same humanity that Aaron Walter spoke about in his book Designing for 
   emotion – it’s about anthropomorphising the web.` ,
-  tags: [tag1, tag2, tag3],
+  title: 'This is a test2',
 });
 
 const article3 = new Article({
-  id: 3,
-  title: 'This is a test3',
+  date: '2017-03-04T14:30:00',
   description: `for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
   both the structured patternisation and the soul of design to coexist; but it’s not a question 
   of how, it's a question of when. To me, the soul that`,
-  date: '2017-03-04T14:30:00',
+  id: 3,
+  tags: [tag1, tag2, tag3],
   text: `research, pattern systems and user experience. Library and pattern-led design are 
   responsible for sites that could be mistaken for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
@@ -55,17 +55,17 @@ const article3 = new Article({
   of how, it's a question of when. To me, the soul that Andy spoke of is entirely about finding 
   humanity, it’s the same humanity that Aaron Walter spoke about in his book Designing for 
   emotion – it’s about anthropomorphising the web.` ,
-  tags: [tag1, tag2, tag3],
+  title: 'This is a test3',
 });
 
 const article4 = new Article({
-  id: 4,
-  title: 'This is a test4',
+  date: '2017-03-04T14:30:00',
   description: `for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
   both the structured patternisation and the soul of design to coexist; but it’s not a question 
   of how, it's a question of when. To me, the soul that`,
-  date: '2017-03-04T14:30:00',
+  id: 4,
+  tags: [tag1, tag2, tag3],
   text: `research, pattern systems and user experience. Library and pattern-led design are 
   responsible for sites that could be mistaken for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
@@ -124,17 +124,17 @@ const article4 = new Article({
   of how, it's a question of when. To me, the soul that Andy spoke of is entirely about finding 
   humanity, it’s the same humanity that Aaron Walter spoke about in his book Designing for 
   emotion – it’s about anthropomorphising the web.` ,
-  tags: [tag1, tag2, tag3],
+  title: 'This is a test4',
 });
 
 const article5 = new Article({
-  id: 5,
-  title: 'This is a test5',
+  date: '2017-03-04T14:30:00',
   description: `for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
   both the structured patternisation and the soul of design to coexist; but it’s not a question 
   of how, it's a question of when. To me, the soul that`,
-  date: '2017-03-04T14:30:00',
+  id: 5,
+  tags: [tag1, tag2, tag3],
   text: `research, pattern systems and user experience. Library and pattern-led design are 
   responsible for sites that could be mistaken for having a place in the cereal aisle of a 
   supermarket (just look at Bootstrap sites). Yet, I believe there’s room at the table for 
@@ -142,7 +142,7 @@ const article5 = new Article({
   of how, it's a question of when. To me, the soul that Andy spoke of is entirely about finding 
   humanity, it’s the same humanity that Aaron Walter spoke about in his book Designing for 
   emotion – it’s about anthropomorphising the web.` ,
-  tags: [tag1, tag2, tag3],
+  title: 'This is a test5',
 });
 
 export function fetchArticles(): IAction {
@@ -162,7 +162,6 @@ export function login(code: string): IAction {
 }
 
 export function refresh(accessToken: string, refreshToken: string): IAction {
-  const config = { Authorization: `Bearer github ${accessToken}` };
   const request = axios.post(`${API}/refresh/${refreshToken}/`);
   return {
     payload: request,

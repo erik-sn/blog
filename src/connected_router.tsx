@@ -11,11 +11,11 @@ class ConnectedRouter extends Component<any, any> {
     store: PropTypes.object,
     history: PropTypes.object,
     children: PropTypes.node,
-  }
+  };
 
   static contextTypes = {
     store: PropTypes.object,
-  }
+  };
 
   public componentWillMount(): void {
     const { children } = this.props;
@@ -32,10 +32,10 @@ class ConnectedRouter extends Component<any, any> {
     return (
       <Router {...props} history={history}>
         <Route render={({ location }: any) => {
-            return <MountedRoute store={store} location={location} children={children} />
+            return <MountedRoute store={store} location={location} children={children} />;
           }}/>
       </Router>
-    )
+    );
   }
 }
 
@@ -50,7 +50,7 @@ class MountedRoute extends Component<any, any> {
 
       this.props.store.dispatch({
         type: '@@router/LOCATION_CHANGE',
-        payload: this.props.location
+        payload: this.props.location,
       });
    }
 
@@ -60,8 +60,8 @@ class MountedRoute extends Component<any, any> {
          this.location = nextProps.location;
          this.store.dispatch({
            type: '@@router/LOCATION_CHANGE',
-           payload: nextProps.location
-         })
+           payload: nextProps.location,
+         });
       }
    }
 
@@ -69,7 +69,5 @@ class MountedRoute extends Component<any, any> {
     return this.props.children;
    }
 }
-
-
 
 export default ConnectedRouter;

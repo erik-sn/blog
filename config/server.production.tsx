@@ -1,6 +1,7 @@
 /* tslint:disable:no-var-requires object-literal-sort-keys */
 delete process.env.BROWSER;
 
+import * as axios from 'axios';
 import * as compression from 'compression';
 import * as express from 'express';
 import * as http from 'http';
@@ -13,6 +14,7 @@ import { StaticRouter } from 'react-router-dom';
 import { applyMiddleware, createStore } from 'redux';
 
 import Application from '../src/components/application';
+import { API } from '../src/constants/types';
 import reducers from '../src/reducers/root_reducer';
 
 const appconfig = require('../package.json');
@@ -28,6 +30,27 @@ app.use(logger('dev')); // log content
 
 // Set path to public assets
 app.use('/static', express.static('dist'));
+
+// app.use('/articles/:title/', (req: any, res: any) => {
+//   const createStoreWithMiddleware = applyMiddleware()(createStore);
+//   const html = renderToString((
+//     <Provider store={createStoreWithMiddleware(reducers)} >
+//       <StaticRouter location={req.url} context={context} >
+//         <Application />
+//       </StaticRouter>
+//     </Provider >
+//   ));
+//   if (context.url) {
+//     res.writeHead(302, {
+//       Location: context.url,
+//     });
+//     res.end();
+//   } else {
+//     res.write(renderFullPage(html, appconfig.version));
+//     res.end();
+//   }
+//   res.end();
+// });
 
 /**
  * For every request send the URL to React Router The router will return the content that should be 
@@ -77,6 +100,9 @@ function renderFullPage(html: string, version: string) {
     <html>
       <head>
         <link rel="stylesheet" href="/static/bundle.min.${version}.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       </head>
       <body id="app-body">
         <div id="app-container">${html}</div>

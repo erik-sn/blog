@@ -45,17 +45,21 @@ class Login extends React.Component<any, any> {
     if (!foundCookie && urlCode) {
       if (cookieState === urlState) {
         cookie.remove('randomstatestring');
-        this.props.login(urlCode).then(() => this.cleanUrl());
+        this.props.login(urlCode);
       } else {
         console.log(cookieState);
         console.log(urlState);
         console.error('State does not match!');
       }
     }
+    if (urlCode) {
+      this.cleanUrl();
+    }
   }
 
   public cleanUrl(): void {
-    
+    const cleanedUrl = window.location.href.split('?')[0];
+    window.history.pushState('' , '', cleanedUrl);
   }
 
   public githubLogin(): void {

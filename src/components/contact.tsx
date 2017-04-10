@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 const Contact = (): JSX.Element => (
   <section className="contact__container">
     <div className="contact__social-media">

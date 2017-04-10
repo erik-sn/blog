@@ -23,4 +23,3 @@ const DisplayBox = ({ article }: IDisplayBoxProps) => {
 };
 
 export default DisplayBox;
-

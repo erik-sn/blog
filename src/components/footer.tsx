@@ -10,4 +10,3 @@ const Footer = ({}: IFooterProps) => (
 );
 
 export default Footer;
-

@@ -13,4 +13,3 @@ const TagDisplay = ({ tag }: ITagDisplayProps) => (
 );
 
 export default TagDisplay;
-

@@ -7,7 +7,6 @@ import TagList from './tag_list';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-
 export interface IArticleProps {
   article: Article;
 }

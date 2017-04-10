@@ -6,7 +6,6 @@ interface INavbarSearchInputState {
   searchValue: string;
 }
 
-
 class NavbarSearchInput extends React.Component<INavbarSearchInputProps, INavbarSearchInputState> {
 
   constructor(props: INavbarSearchInputProps) {

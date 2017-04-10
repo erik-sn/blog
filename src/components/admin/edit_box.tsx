@@ -48,4 +48,3 @@ class EditBox extends React.Component<IEditBoxProps, IEditBoxState> {
 };
 
 export default EditBox;
-
