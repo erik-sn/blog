@@ -1,6 +1,8 @@
+
 import * as React from 'react';
 
 import Article from '../../models/article';
+import Tag from '../../models/tag';
 
 export interface IEditBoxProps {
   article: Article;
@@ -16,9 +18,13 @@ class EditBox extends React.Component<IEditBoxProps, IEditBoxState> {
   constructor(props: IEditBoxProps) {
     super(props);
     this.state = {
-      tagValue: '',
+      tagValue: this.parseInitialTagValue(props.article.tags),
     };
     this.handleTagChange = this.handleTagChange.bind(this);
+  }
+
+  public parseInitialTagValue(tags: Tag[]): string {
+    return tags.reduce((str, tag) => str + tag.name + ', ', '');
   }
 
   public handleTagChange(event: React.FormEvent<HTMLInputElement>): void {

@@ -16,7 +16,8 @@ class Article {
   public active: boolean = true;
   public id: number;
   public title: string;
-  public urlTitle: string;
+  // tslint:disable-next-line:variable-name
+  public url_title: string;
   public description: string;
   public text: string;
   public date: moment.Moment;
@@ -33,7 +34,7 @@ class Article {
     this.timeToRead = Math.ceil(text.split(' ').length / 200);
     this.dateString = date;
     this.date = moment(date);
-    this.urlTitle = this.formatForUrl(title);
+    this.url_title = this.formatForUrl(title);
     if (active !== undefined) {
       this.active = active;
     }
@@ -57,18 +58,21 @@ class Article {
       date: this.dateString,
       description: this.description,
       id: this.id,
-      tags: this.tags.map((tag) => tag.name),
+      tags: this.tags.map((tag) => ({ id: tag.id, name: tag.name })),
       text: this.text,
       title: this.title,
     };
     return JSON.stringify(objectData);
   }
 
+  public tagsToIds(): number[] {
+    return this.tags.map((tag) => tag.id);
+  }
+
   private formatForUrl(title: string): string {
     const removeSpaces = title.toLowerCase().replace(/ /g, '-');
     return removeSpaces.replace(/[^0-9a-zA-Z\-]+/g, '');
   }
-
 }
 
 export default Article;

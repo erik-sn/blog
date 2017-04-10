@@ -23,7 +23,7 @@ const ArticleDisplay = ({ article }: IArticleDisplayProps) => {
 function mapStateToProps(state: IReduxState, ownProps: any): {} {
   const { articles } = state.data;
   const inputUrlTitle = ownProps.match.params.title;
-  const article = articles.find((a) => a.urlTitle === inputUrlTitle);
+  const article = articles.find((a) => a.url_title === inputUrlTitle);
   return { article };
 }
 

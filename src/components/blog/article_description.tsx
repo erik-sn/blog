@@ -13,7 +13,7 @@ export interface IArticleProps {
 
 const ArticleDescription = ({ article }: IArticleProps) => (
   <div className="article__container" >
-    <Link to={`/articles/${article.urlTitle}/`} >
+    <Link to={`/articles/${article.url_title}/`} >
       <div className="article__inner-container">
         <h2>{article.title}</h2>
         <ArticleInfo article={article} />

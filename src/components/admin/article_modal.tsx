@@ -21,7 +21,7 @@ const ArticleModal = ({ articles, closeModal, visible }: IArticleModalProps) => 
         {articles.map((article, i) => (
           <div key={i} className="article_modal__link">
             <Link
-              to={`/write/${article.urlTitle}/`}
+              to={`/write/${article.url_title}/`}
               onClick={closeModal}
             >
               {article.title}

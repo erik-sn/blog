@@ -1,3 +1,4 @@
+
 import * as axios from 'axios';
 import * as moment from 'moment';
 import * as React from 'react';
@@ -5,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 import connect from '../../utils/connect';
 
-import { IReduxState } from '../../constants/interfaces';
+import { fetchArticles } from '../../actions';
+import { IAction, IReduxState } from '../../constants/interfaces';
 import { API } from '../../constants/types';
 import Article from '../../models/article';
 import Tag from '../../models/tag';
@@ -22,6 +24,7 @@ export interface IWriterProps {
   match: any;
   user: User;
   token: Token;
+  fetchArticles: () => IAction;
 }
 
 export interface IWriterState {
@@ -30,7 +33,7 @@ export interface IWriterState {
   showArticleModal: boolean;
 }
 
-@connect(mapStateToProps)
+@connect(mapStateToProps, { fetchArticles })
 export default class Writer extends React.Component<IWriterProps, IWriterState> {
 
   public emptyArticle: any = new Article({
@@ -103,9 +106,10 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     this.setState({ ...this.state, showArticleModal: !this.state.showArticleModal });
   }
 
-  public handleClear(): void {
-    this.setState(this.defaultState);
+  public handleClear(): boolean {
     localStorage.removeItem('writer_form');
+    this.setState(this.defaultState);
+    return true;
   }
 
   public handleSubmit(): void {
@@ -113,13 +117,19 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     const article = Object.assign({}, this.state.article, {
       owner: user.id,
     });
-    // tslint:disable-next-line:no-string-literal
-    axios.post(`${API}/articles/`, article);
+    axios.post(`${API}/articles/`, article)
+    .then(() => this.handleClear())
+    .then(() => this.props.fetchArticles());
   }
 
   public handleUpdate(): void {
-    console.log('Updating:');
-    console.log(this.state.article);
+    const { user, token } = this.props;
+    const article: any = Object.assign({}, this.state.article, {
+      owner: user.id,
+    });
+    axios.put(`${API}/articles/${article.id}/`, article)
+    .then(() => this.handleClear())
+    .then(() => this.props.fetchArticles());
   }
 
   public render(): JSX.Element {
@@ -164,7 +174,7 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
 
 function mapStateToProps(state: IReduxState, ownProps: any): {} {
   const inputUrlTitle = ownProps.match.params.title;
-  const activeArticle = state.data.articles.find((a) => a.urlTitle === inputUrlTitle);
+  const activeArticle = state.data.articles.find((a) => a.url_title === inputUrlTitle);
   return {
     articles: state.data.articles,
     activeArticle,

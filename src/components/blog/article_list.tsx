@@ -20,7 +20,7 @@ const ArticleList = ({ activeArticle, articles }: IArticleListProps): JSX.Elemen
 function mapStateToProps(state: IReduxState, ownProps: any): {} {
   const { articles } = state.data;
   const inputUrlTitle = ownProps.match.params.title;
-  const activeArticle = articles.find((a) => a.urlTitle === inputUrlTitle);
+  const activeArticle = articles.find((a) => a.url_title === inputUrlTitle);
   return { articles };
 }
 

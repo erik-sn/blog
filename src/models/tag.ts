@@ -12,6 +12,13 @@ class Tag {
     this.id = id;
     this.name = name;
   }
+
+  public stringify(): string {
+    return JSON.stringify({
+      id: this.id,
+      name: this.name,
+    });
+  }
 }
 
 export default Tag;
