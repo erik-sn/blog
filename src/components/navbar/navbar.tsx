@@ -6,12 +6,17 @@ import { Link, withRouter } from 'react-router-dom';
 import connect from '../../utils/connect';
 
 import { IReduxState } from '../../constants/interfaces';
+import User from '../../models/user';
 import Login from './login';
 import NavbarItem from './navbar_item';
 import NavbarLogo from './navbar_logo';
 import NavbarSearch from './navbar_search';
 
-export interface INavbarProps { route?: string; }
+export interface INavbarProps {
+  route?: string;
+  user?: User;
+}
+
 export interface INavbarState {
   minimize: boolean;
   searchActive: boolean;
@@ -54,7 +59,7 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
 
   public render() {
     const { minimize, searchActive } = this.state;
-    const { route } = this.props;
+    const { route, user } = this.props;
     const navbarParams = { route, minimize, hide: !searchActive };
     return (
       <nav className="navbar__container" style={minimize ? this.minimizeStyle : this.standardStyle} >
@@ -64,6 +69,7 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
           className="navbar__items-secondary"
         >
           <NavbarItem to="/" icon="home" label="home" {...navbarParams} />
+          {user && user.isStaff ? <NavbarItem to="/write" icon="palette" label="Write" {...navbarParams} /> : undefined}
           <NavbarItem to="/sandbox" icon="widgets" label="sandbox" {...navbarParams} />
           <NavbarItem to="/about" icon="info" label="about" {...navbarParams} />
           <NavbarItem to="/contact" icon="email" label="contact" {...navbarParams} />
@@ -84,6 +90,7 @@ function mapStateToProps(state: IReduxState) {
   const { location } = state.router;
   return {
     route: location ? location.pathname : '/',
+    user: state.auth.user,
   };
 }
 

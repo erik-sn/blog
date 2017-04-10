@@ -11,6 +11,7 @@ import Article from '../../models/article';
 import Tag from '../../models/tag';
 import Token from '../../models/token';
 import User from '../../models/user';
+import FourOhFour from '../fourohfour';
 import ArticleModal from './article_modal';
 import DisplayBox from './display_box';
 import EditBox from './edit_box';
@@ -123,7 +124,10 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
 
   public render(): JSX.Element {
     const { article, mode, showArticleModal } = this.state;
-    const { articles, activeArticle } = this.props;
+    const { articles, activeArticle, user } = this.props;
+    if (!user || !user.isStaff) {
+      return <FourOhFour />;
+    }
     if (!article) {
       return <div>Loading...</div>;
     }
