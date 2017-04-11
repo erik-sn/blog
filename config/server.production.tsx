@@ -1,3 +1,5 @@
+import * as process from 'process';
+import { Location } from 'tslint/lib/rules/completedDocsRule';
 /* tslint:disable:no-var-requires object-literal-sort-keys */
 delete process.env.BROWSER;
 
@@ -6,15 +8,17 @@ import * as compression from 'compression';
 import * as express from 'express';
 import * as http from 'http';
 import * as logger from 'morgan';
-import * as  React from 'react';
+import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 // import {  match, RouterContext } from 'react-router';
 import { StaticRouter } from 'react-router-dom';
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, Store } from 'redux';
 
 import Application from '../src/components/application';
+import { IReduxState } from '../src/constants/interfaces';
 import { API } from '../src/constants/types';
+import Article from '../src/models/article';
 import reducers from '../src/reducers/root_reducer';
 
 const appconfig = require('../package.json');
@@ -30,27 +34,7 @@ app.use(logger('dev')); // log content
 
 // Set path to public assets
 app.use('/static', express.static('dist'));
-
-// app.use('/articles/:title/', (req: any, res: any) => {
-//   const createStoreWithMiddleware = applyMiddleware()(createStore);
-//   const html = renderToString((
-//     <Provider store={createStoreWithMiddleware(reducers)} >
-//       <StaticRouter location={req.url} context={context} >
-//         <Application />
-//       </StaticRouter>
-//     </Provider >
-//   ));
-//   if (context.url) {
-//     res.writeHead(302, {
-//       Location: context.url,
-//     });
-//     res.end();
-//   } else {
-//     res.write(renderFullPage(html, appconfig.version));
-//     res.end();
-//   }
-//   res.end();
-// });
+app.use('/dist', express.static('dist'));
 
 /**
  * For every request send the URL to React Router The router will return the content that should be 
@@ -61,25 +45,41 @@ app.use('/static', express.static('dist'));
  * routing that takes place will be handled purely by the javascript in react router.
  */
 const context: any = {};
-app.use('*', (req: any, res: any) => {
-  const createStoreWithMiddleware = applyMiddleware()(createStore);
-  const html = renderToString((
-    <Provider store={createStoreWithMiddleware(reducers)} >
-      <StaticRouter location={req.url} context={context} >
-        <Application />
-      </StaticRouter>
-    </Provider >
-  ));
-  if (context.url) {
-    res.writeHead(302, {
-      Location: context.url,
-    });
-    res.end();
-  } else {
-    res.write(renderFullPage(html, appconfig.version));
-    res.end();
-  }
+
+
+
+app.use('/', (req: any, res: any) => {
+  axios.get(`${API}/articles/`).then((response: any) => {
+    const articles: Article[] = response.data.map((object: any) => new Article(object));
+    const initialStore = createInitialStore(articles);
+    const html = generateHtml(initialStore, req);
+    if (context.url) {
+      res.writeHead(302, {
+        Location: context.url,
+      });
+      res.end();
+    } else {
+      res.write(renderFullPage(html, appconfig.version, initialStore));
+      res.end();
+    }
+  });
 });
+
+function createInitialStore(articles: Article[]): Store<any> {
+    const createStoreWithMiddleware = applyMiddleware()(createStore);
+    const data: any = { data: { articles }};
+    return createStoreWithMiddleware(reducers, data);
+}
+
+function generateHtml(store: Store<any>, req: any): string {
+    return renderToString((
+      <Provider store={store} >
+        <StaticRouter location={req.url} context={context} >
+          <Application />
+        </StaticRouter>
+      </Provider >
+    ));
+}
 
 // create server based on application configuration
 server = http.createServer(app);
@@ -94,7 +94,7 @@ server.listen(PORT);
  * @param {string} version - application version from package.json
  * @return {string} full html page
  */
-function renderFullPage(html: string, version: string) {
+function renderFullPage(html: string, version: string, initialStore: Store<any>) {
   return `
     <!doctype html>
     <html>
@@ -107,7 +107,11 @@ function renderFullPage(html: string, version: string) {
       <body id="app-body">
         <div id="app-container">${html}</div>
       </body>
+      <script>
+        window.__PRELOADED_STATE__ = ${JSON.stringify(initialStore.getState()).replace(/</g, '\\u003c')}
+      </script>
       <script src="/static/bundle.min.${version}.js"></script>
+      <script>
     </html>
   `;
 }

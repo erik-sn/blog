@@ -1,12 +1,14 @@
+import * as moment from 'moment';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { routerMiddleware } from 'react-router-redux';
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, Store } from 'redux';
 import * as promise from 'redux-promise';
 
 import Application from './components/application';
 import ConnectedRouter from './connected_router';
+import { IReduxState } from './constants/interfaces';
 import AuthMiddleware from './middleware/auth_middleware';
 import reducers from './reducers/root_reducer';
 import { runPolyfills } from './utils/polyfills';
@@ -30,10 +32,23 @@ if (process.env.BROWSER) {
   requireAll(require.context('./sass/', true, /\.scss$/));
 }
 
-// configure redux dev tools
 declare const window: any; // make typescript happy
-const store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
-                                                  window.__REDUX_DEVTOOLS_EXTENSION__());
+let store: Store<any>;
+if (process.env.NODE_ENV === 'production') {
+  // production mode with server side rendering
+  const preloadedState: IReduxState = window.__PRELOADED_STATE__;
+  // server side data is added as a string so we convert the date
+  // strings back to moment objects here
+  preloadedState.data.articles.forEach((article) => {
+    article.date = moment(article.date);
+  });
+  delete window.__PRELOADED_STATE__;
+  store =  createStoreWithMiddleware(reducers, preloadedState);
+} else {
+  // development mode with redux dev tools
+  store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
+                                              window.__REDUX_DEVTOOLS_EXTENSION__());
+}
 
 const App = () => (
   <Provider store={store}>

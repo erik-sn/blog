@@ -9,7 +9,6 @@ export const initialState: IDataReducer = {
 export default (state: IDataReducer = initialState, action: IAction) => {
   switch (action.type) {
     case ACTIONS.FETCH_ARTICLES:
-      console.log(action.payload.data);
       return {
         ...state,
         articles: action.payload.data.map((object: any) => new Article(object)),

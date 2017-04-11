@@ -12,7 +12,8 @@ export interface IArticleBodyProps {
   activeArticle: Article;
 }
 
-const ArticleBody = ({ activeArticle }: IArticleBodyProps) => {
+const ArticleBody = (props: IArticleBodyProps) => {
+  const { activeArticle } = props;
   if (!activeArticle) {
     return <div>Loading...</div>;
   }
