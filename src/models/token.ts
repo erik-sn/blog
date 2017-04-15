@@ -1,5 +1,3 @@
-import * as moment from 'moment';
-
 interface ITokenConstructor {
   access_token: string;
   expires_in: number;
@@ -15,9 +13,9 @@ export default class Token {
   public refreshToken: string;
   public scope: string;
   public tokenType: string;
-  public created: moment.Moment;
+  public created: number;
   public createdString: string;
-  public expires: moment.Moment;
+  public expires: number;
   public expiresString: string;
 
   constructor({ access_token, expires_in, refresh_token, scope, token_type }: ITokenConstructor) {
@@ -26,14 +24,13 @@ export default class Token {
     this.refreshToken = refresh_token;
     this.scope = scope;
     this.tokenType = token_type;
-    this.created = moment();
-    this.createdString = this.created.format('YYYY-MM-DDTHH:MM:SS');
-    this.expires = this.created.add(expires_in, 'seconds');
-    this.expiresString = this.expires.format('YYYY-MM-DDTHH:MM:SS');
+    this.created = Date.now();
+    this.expires = this.created + expires_in;
+    this.expiresString = new Date(this.expires).toString();
   }
 
   public duration(): number {
-    return this.expiresIn - moment().diff(this.created, 'seconds');
+    return this.expires - Date.now();
   }
 
   public stringify(): string {

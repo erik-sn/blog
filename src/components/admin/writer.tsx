@@ -1,6 +1,5 @@
 
 import * as axios from 'axios';
-import * as moment from 'moment';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -37,7 +36,6 @@ export interface IWriterState {
 export default class Writer extends React.Component<IWriterProps, IWriterState> {
 
   public emptyArticle: any = new Article({
-    date: moment().format('YYYY-MM-DDTHH:MM:SS'),
     description: '',
     id: -1,
     published: false,

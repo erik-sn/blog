@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -38,9 +37,9 @@ if (process.env.NODE_ENV === 'production') {
   // production mode with server side rendering
   const preloadedState: IReduxState = window.__PRELOADED_STATE__;
   // server side data is added as a string so we convert the date
-  // strings back to moment objects here
+  // strings back to date objects
   preloadedState.data.articles.forEach((article) => {
-    article.date = moment(article.date);
+    article.date = new Date(article.date);
   });
   delete window.__PRELOADED_STATE__;
   store =  createStoreWithMiddleware(reducers, preloadedState);

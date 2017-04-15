@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 import Tag from './tag';
 
 interface IArticleConstructor {
@@ -6,7 +5,7 @@ interface IArticleConstructor {
   id: number;
   title: string;
   description: string;
-  date: string;
+  created?: string;
   text: string;
   tags: Tag[];
 }
@@ -20,20 +19,20 @@ class Article {
   public url_title: string;
   public description: string;
   public text: string;
-  public date: moment.Moment;
+  public date?: Date;
   public timeToRead: number;
   public tags: Tag[];
   private dateString: string;
 
-  constructor({ id, title, description, date, text, tags, published }: IArticleConstructor) {
+  constructor({ id, title, description, created, text, tags, published }: IArticleConstructor) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.tags = tags.map((tag) => new Tag(tag));
     this.text = text;
     this.timeToRead = Math.ceil(text.split(' ').length / 200);
-    this.dateString = date;
-    this.date = moment(date);
+    this.dateString = created;
+    this.date = new Date(created);
     this.url_title = this.formatForUrl(title);
     if (published !== undefined) {
       this.published = published;
@@ -42,10 +41,9 @@ class Article {
 
   public clone(): this {
     return new (this.constructor as typeof Article)({
-      published: this.published,
-      date: this.dateString,
       description: this.description,
       id: this.id,
+      published: this.published,
       tags: this.tags,
       text: this.text,
       title: this.title,
@@ -54,10 +52,10 @@ class Article {
 
   public stringify(): any {
     const objectData = {
-      published: this.published,
       date: this.dateString,
       description: this.description,
       id: this.id,
+      published: this.published,
       tags: this.tags.map((tag) => ({ id: tag.id, name: tag.name })),
       text: this.text,
       title: this.title,

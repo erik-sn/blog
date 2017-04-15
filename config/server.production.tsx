@@ -112,6 +112,8 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
     <!doctype html>
     <html>
       <head>
+        <title>Dev Sandbox</title>
+        <link rel="icon" href="https://res.cloudinary.com/dvr87tqip/image/upload/v1492291999/sandbox_xb9z2t.png" type="image/x-icon" />
         <link rel="stylesheet" href="/static/bundle.min.${version}.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       </head>
