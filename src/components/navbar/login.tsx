@@ -3,7 +3,7 @@ import * as axios from 'axios';
 import * as cookie from 'js-cookie';
 import * as React from 'react';
 
-import { login, logout, refresh } from '../../actions/';
+import { fetchArticles, login, logout, refresh } from '../../actions/';
 import { IAction, IReduxState } from '../../constants/interfaces';
 import { API } from '../../constants/types';
 import connect from '../../utils/connect';
@@ -11,17 +11,21 @@ import { getParameterByName, randomString } from '../../utils/utils';
 
 import Token from '../../models/token';
 import User from '../../models/user';
+import Lock from '../icons/lock';
+import Unlock from '../icons/unlock';
 
 interface ILoginProps {
+  fetchArticles?: () => IAction;
   login?: (code: string) => IAction;
   logout?: (accessToken: string) => IAction;
+  minimize?: boolean;
   refresh?: (accessToken: string, refreshToken: string) => IAction;
   user?: User;
   token?: Token;
 }
 
-@connect(mapStateToProps, { login, logout, refresh })
-class Login extends React.Component<any, any> {
+@connect(mapStateToProps, { login, logout, refresh, fetchArticles })
+class Login extends React.Component<ILoginProps, any> {
 
   private githubClientId = '43f96561038732c1d647';
   private githubUrl = `http://github.com/login/oauth/authorize`;
@@ -34,6 +38,13 @@ class Login extends React.Component<any, any> {
     this.githubLogin = this.githubLogin.bind(this);
     this.logout = this.logout.bind(this);
     this.handleToggleShowPrompt = this.handleToggleShowPrompt.bind(this);
+  }
+
+  public componentWillUpdate(nextProps: ILoginProps) {
+    const { fetchArticles, user } = this.props;
+    if (!user && nextProps.user) {
+      fetchArticles();
+    }
   }
 
   public componentDidMount(): void {
@@ -100,13 +111,12 @@ class Login extends React.Component<any, any> {
     const { minimize, user } = this.props;
     return (
       <div className="login__container">
-        <i
-          className="material-icons"
+        <div
           onClick={this.handleToggleShowPrompt}
           style={{ cursor: 'pointer' }}
         >
-          {user ? 'lock_open' : 'lock'}
-        </i>
+          {user ? <Unlock /> : <Lock />}
+        </div>
         <div
           className="login__container-prompt"
           onClick={user ? this.logout : this.githubLogin}

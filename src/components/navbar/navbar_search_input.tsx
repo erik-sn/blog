@@ -1,9 +1,9 @@
 import * as axios from 'axios';
-import { debounce } from 'lodash';
+import * as debounce from 'lodash.debounce';
 import * as React from 'react';
 import { Motion, presets, spring } from 'react-motion';
 
-import { articleSearch } from '../../actions/index';
+import { articleSearch, updateSearchInput } from '../../actions/index';
 import { IAction, IReduxState } from '../../constants/interfaces';
 import { API } from '../../constants/types';
 import Article from '../../models/article';
@@ -11,24 +11,19 @@ import connect from '../../utils/connect';
 
 interface INavbarSearchInputProps {
   articleSearch?: (searchValue: string) => IAction;
+  updateSearchInput?: (searchValue: string) => IAction;
+  searchValue?: string;
 }
 
-interface INavbarSearchInputState {
-  searchValue: string;
-}
-
-@connect(null, { articleSearch })
-class NavbarSearchInput extends React.Component<INavbarSearchInputProps, INavbarSearchInputState> {
+@connect(mapStateToProps, { articleSearch, updateSearchInput })
+class NavbarSearchInput extends React.Component<INavbarSearchInputProps, {}> {
 
   private handleSearch: any;
 
   constructor(props: INavbarSearchInputProps) {
     super(props);
-    this.state = {
-      searchValue: '',
-    };
-    this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearch = debounce(props.articleSearch, 250);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   public componentDidMount() {
@@ -45,23 +40,24 @@ class NavbarSearchInput extends React.Component<INavbarSearchInputProps, INavbar
         type="text"
         id="navbar__search-input"
         className="navbar__search-input"
-        value={this.state.searchValue}
+        value={this.props.searchValue}
         onChange={this.handleSearchChange}
       />
     );
   }
 
-  private resetSearchValue(): void {
-    this.setState({ searchValue: '' }, () => this.handleSearch(''));
-  }
-
   private handleSearchChange(event: React.FormEvent<HTMLInputElement>) {
     event.preventDefault();
     const searchValue = event.currentTarget.value;
-    this.setState({ searchValue }, () => {
-      this.handleSearch(searchValue);
-    });
+    this.props.updateSearchInput(searchValue);
+    this.handleSearch(searchValue);
   }
+}
+
+function mapStateToProps(state: IReduxState): {} {
+  return {
+    searchValue: state.display.searchValue,
+  };
 }
 
 export default NavbarSearchInput;

@@ -7,6 +7,7 @@ import Tag from '../../models/tag';
 export interface IEditBoxProps {
   article: Article;
   change: (event: React.FormEvent<any>) => void;
+  changePublish: () => void;
 }
 
 export interface IEditBoxState {
@@ -36,7 +37,7 @@ class EditBox extends React.Component<IEditBoxProps, IEditBoxState> {
   }
 
   public render(): JSX.Element {
-    const { change, article } = this.props;
+    const { change, changePublish, article } = this.props;
     return (
       <div id="edit_box__container" className="box_container">
         <input name="title" onChange={change} value={article.title} />
@@ -48,6 +49,7 @@ class EditBox extends React.Component<IEditBoxProps, IEditBoxState> {
           onChange={change}
         />
         <input name="tags" onChange={this.handleTagChange} value={this.state.tagValue} />
+        <input type="checkbox" name="published" onChange={changePublish} checked={article.published} />
       </div>
     );
   }

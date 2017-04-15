@@ -23,15 +23,20 @@ export interface IAction {
 }
 
 export interface IReduxState {
-  router: IRouter;
-  data: IDataReducer;
   auth: IAuthReducer;
+  data: IDataReducer;
+  display: IDisplayReducer;
+  router: IRouter;
+}
+
+export interface IDisplayReducer {
+  searchActive: boolean;
+  searchValue: string;
 }
 
 export interface IDataReducer {
   articles: Article[];
   searchResults: Article[];
-  searchValue: string;
 }
 
 export interface IAuthReducer {

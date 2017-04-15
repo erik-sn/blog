@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { resetArticleSearch } from '../../actions/index';
-import { IReduxState } from '../../constants/interfaces';
+import { hideSearch } from '../../actions/index';
+import { IAction, IReduxState } from '../../constants/interfaces';
 import Article from '../../models/article';
 import connect from '../../utils/connect';
 import NoResults from './no_results';
@@ -12,13 +12,13 @@ import SearchResult from './search_result';
 export interface ISearchResultsProps {
   active: boolean;
   parentStyle: any;
-  resetArticleSearch?: () => void;
+  hideSearch?: () => IAction;
   searchResults?: Article[];
   searchValue?: string;
   toggleSearch: () => void;
 }
 
-@connect(mapStateToProps, { resetArticleSearch })
+@connect(mapStateToProps, { hideSearch })
 export class SearchResults extends React.Component<ISearchResultsProps, {}> {
 
   constructor(props: ISearchResultsProps) {
@@ -35,8 +35,9 @@ export class SearchResults extends React.Component<ISearchResultsProps, {}> {
     const trimmedResults = searchResults.slice(0, 5);
     return (
       <div
+        id="search_results__id"
         className="search_results__container"
-        style={{ marginTop: parentStyle.height }}
+        style={{ top: parentStyle.height }}
       >
         {trimmedResults.map((article, i) => (
           <SearchResult key={i} article={article} closeSearch={this.closeSearch} />
@@ -47,8 +48,8 @@ export class SearchResults extends React.Component<ISearchResultsProps, {}> {
   }
 
   private closeSearch(): void {
-    const { resetArticleSearch, toggleSearch} = this.props;
-    resetArticleSearch();
+    const { hideSearch, toggleSearch} = this.props;
+    hideSearch();
     toggleSearch();
   }
 
@@ -68,7 +69,7 @@ export class SearchResults extends React.Component<ISearchResultsProps, {}> {
 function mapStateToProps(state: IReduxState) {
   return {
     searchResults: state.data.searchResults,
-    searchValue: state.data.searchValue,
+    searchValue: state.display.searchValue,
   };
 }
 

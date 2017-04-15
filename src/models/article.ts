@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import Tag from './tag';
 
 interface IArticleConstructor {
-  active?: boolean;
+  published?: boolean;
   id: number;
   title: string;
   description: string;
@@ -13,7 +13,7 @@ interface IArticleConstructor {
 
 class Article {
 
-  public active: boolean = true;
+  public published: boolean = false;
   public id: number;
   public title: string;
   // tslint:disable-next-line:variable-name
@@ -25,7 +25,7 @@ class Article {
   public tags: Tag[];
   private dateString: string;
 
-  constructor({ id, title, description, date, text, tags, active }: IArticleConstructor) {
+  constructor({ id, title, description, date, text, tags, published }: IArticleConstructor) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -35,14 +35,14 @@ class Article {
     this.dateString = date;
     this.date = moment(date);
     this.url_title = this.formatForUrl(title);
-    if (active !== undefined) {
-      this.active = active;
+    if (published !== undefined) {
+      this.published = published;
     }
   }
 
   public clone(): this {
     return new (this.constructor as typeof Article)({
-      active: this.active,
+      published: this.published,
       date: this.dateString,
       description: this.description,
       id: this.id,
@@ -54,7 +54,7 @@ class Article {
 
   public stringify(): any {
     const objectData = {
-      active: this.active,
+      published: this.published,
       date: this.dateString,
       description: this.description,
       id: this.id,

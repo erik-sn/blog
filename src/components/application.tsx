@@ -17,7 +17,6 @@ import DisplaySearchResults from './display_search_results';
 import Footer from './footer';
 import FourOhFour from './fourohfour';
 import Navbar from './navbar/navbar';
-import NavbarLogo from './navbar/navbar_logo';
 import Portfolio from './portfolio/portfolio';
 
 export interface IApplicationProps {

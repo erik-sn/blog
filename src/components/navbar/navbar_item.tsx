@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export interface INavbarItemProps {
   to: string;
-  icon: string;
+  icon: JSX.Element;
   label: string;
   route?: string;
   hide?: boolean;
@@ -23,7 +23,7 @@ const Navbar = (props: INavbarItemProps): JSX.Element => {
   return (
     <Link to={props.to} >
       <div className={itemClass} >
-        <i className="material-icons">{props.icon}</i>
+        {props.icon}
         <Motion style={{value: spring(props.hide ? 8.5 : 0, presets.stiff)}}>
           {(width: any) => renderLabel(props.label, width.value)}
         </Motion>

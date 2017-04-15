@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Motion, presets, spring } from 'react-motion';
 
+import SearchIcon from '../icons/search';
 import NavbarSearchInput from './navbar_search_input';
 
 interface INavbarSearchProps {
@@ -22,7 +23,7 @@ class NavbarSearch extends React.Component<INavbarSearchProps, INavbarSearchStat
     this.toggleSearch = this.toggleSearch.bind(this);
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     const searchWidth = window.innerWidth < 400 ? window.innerWidth - 75 : 350;
     this.setState({ searchWidth });
   }
@@ -47,13 +48,12 @@ class NavbarSearch extends React.Component<INavbarSearchProps, INavbarSearchStat
         >
           <Motion style={{value: spring(active ? 1 : -1)}}>
             {(flip: any) =>
-              <i
+              <div
                 onClick={this.toggleSearch}
-                className="material-icons"
-                style={{ transform: `scale(${flip.value}, 1)`}}
+                style={{ cursor: 'pointer', transform: `scale(${flip.value}, 1)`}}
               >
-                search
-              </i>
+                <SearchIcon />
+              </div>
             }
           </Motion>
           <Motion style={{value: spring(active ? 0 : 1)}}>

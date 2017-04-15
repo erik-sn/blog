@@ -10,7 +10,7 @@ const appconfig = require('../package.json');
 promise.polyfill();
 
 const configuration: webpack.Configuration = {
-  devtool: 'hidden-source-map',
+  devtool: 'source-map',
   entry: [
     './src/index.tsx',
   ],
@@ -29,9 +29,15 @@ const configuration: webpack.Configuration = {
       filename: '/bundle.min.' + appconfig.version + '.css',
       allChunks: true,
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_console: true,
+      },
+    }),
     new webpack.LoaderOptionsPlugin({ options: { postcss: [ autoprefixer ] } }),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [

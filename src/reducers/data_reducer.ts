@@ -5,7 +5,6 @@ import Article from '../models/article';
 export const initialState: IDataReducer = {
   articles: [],
   searchResults: [],
-  searchValue: '',
 };
 
 export default (state: IDataReducer = initialState, action: IAction) => {

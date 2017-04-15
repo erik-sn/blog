@@ -40,6 +40,7 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     date: moment().format('YYYY-MM-DDTHH:MM:SS'),
     description: '',
     id: -1,
+    published: false,
     tags: [],
     text: '',
     title: '',
@@ -59,6 +60,7 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     this.handleToggleModal = this.handleToggleModal.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePublishedChange = this.handlePublishedChange.bind(this);
   }
 
   public componentDidMount() {
@@ -97,8 +99,18 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
     } else {
       updatedArticle[currentTarget.name] = currentTarget.value;
     }
-    this.setState({ article: updatedArticle }, () => {
-      localStorage.setItem('writer_form', updatedArticle.stringify());
+    this.updateArticle(updatedArticle);
+  }
+
+  public handlePublishedChange(): void {
+    const updatedArticle: any = this.state.article.clone();
+    updatedArticle.published = !updatedArticle.published;
+    this.updateArticle(updatedArticle);
+  }
+
+  public updateArticle(article: Article): void {
+    this.setState({ article }, () => {
+      localStorage.setItem('writer_form', article.stringify());
     });
   }
 
@@ -155,6 +167,7 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
           <div className="writer__display-container">
             <EditBox
               change={this.handleInputChange}
+              changePublish={this.handlePublishedChange}
               article={article}
             />
             <DisplayBox article={article} />

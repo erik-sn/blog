@@ -1,10 +1,10 @@
 @import "./style";
 
 .about__container {
-  @include fluid-type(37.5rem, 90rem, $h4-min, $h4-max);
+  @include fluid-type(25.5rem, 40rem, $h5-min, $h5-max);
   color: $primary;
-  margin-top: 20px;
-  padding: 0px 25px;
+  margin-top: 60px;
+  padding: 0px 50px;
 
   a {
     text-decoration: none;

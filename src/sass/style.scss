@@ -3,11 +3,6 @@ $primary: #191919;
 $secondary: rgb(250, 250, 250);
 $link: #09c;
 
-@font-face {
-  font-family: 'geomanist';
-  src: URL('/static/geomanist.ttf') format ('ttf');
-}
-
 body {
   margin: 0px;
   background: $secondary;

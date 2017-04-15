@@ -4,26 +4,34 @@ import { Link, withRouter } from 'react-router-dom';
 
 import connect from '../../utils/connect';
 
-import { IReduxState } from '../../constants/interfaces';
+import { hideSearch, showSearch, updateSearchInput } from '../../actions/index';
+import { IAction, IReduxState } from '../../constants/interfaces';
 import Article from '../../models/article';
 import User from '../../models/user';
+import Drawer from '../icons/drawer';
+import Home from '../icons/home';
+import Mail from '../icons/mail';
+import Profile from '../icons/user';
+import Write from '../icons/write';
 import Login from './login';
 import NavbarItem from './navbar_item';
-import NavbarLogo from './navbar_logo';
 import NavbarSearch from './navbar_search';
 import SearchResults from './search_results';
 
 export interface INavbarProps {
   route?: string;
+  searchActive?: boolean;
   user?: User;
+  hideSearch?: () => IAction;
+  showSearch?: () => IAction;
+  updateSearchInput?: (searchValue: string) => IAction;
 }
 
 export interface INavbarState {
   minimize: boolean;
-  searchActive: boolean;
 }
 
-@connect(mapStateToProps)
+@connect(mapStateToProps, { hideSearch, showSearch, updateSearchInput })
 class Navbar extends React.Component<INavbarProps, INavbarState> {
 
   public minimizeStyle: any = {
@@ -40,7 +48,6 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
     super(props);
     this.state = {
       minimize: false,
-      searchActive: false,
     };
     this.toggleSearch = this.toggleSearch.bind(this);
   }
@@ -58,28 +65,28 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
   }
 
   public render(): JSX.Element {
-    const { minimize, searchActive } = this.state;
-    const { route, user } = this.props;
+    const { minimize } = this.state;
+    const { route, user, searchActive } = this.props;
     const navbarParams = { route, minimize, hide: !searchActive };
     return (
       <nav className="navbar__container" style={minimize ? this.minimizeStyle : this.standardStyle} >
-        <NavbarSearch toggleSearch={this.toggleSearch} active={this.state.searchActive} />
+        <NavbarSearch toggleSearch={this.toggleSearch} active={searchActive} />
         <div
           id="navbar__items"
           className="navbar__items-secondary"
         >
-          <NavbarItem to="/" icon="home" label="home" {...navbarParams} />
-          {user && user.isStaff ? <NavbarItem to="/write" icon="palette" label="Write" {...navbarParams} /> : undefined}
-          <NavbarItem to="/sandbox" icon="widgets" label="sandbox" {...navbarParams} />
-          <NavbarItem to="/about" icon="info" label="about" {...navbarParams} />
-          <NavbarItem to="/contact" icon="email" label="contact" {...navbarParams} />
+          <NavbarItem to="/" icon={<Home />} label="home" {...navbarParams} />
+          {user && user.isStaff ? <NavbarItem to="/write" icon={<Write />} label="Write" {...navbarParams} /> : undefined}
+          <NavbarItem to="/sandbox" icon={<Drawer />} label="sandbox" {...navbarParams} />
+          <NavbarItem to="/about" icon={<Profile />} label="about" {...navbarParams} />
+          <NavbarItem to="/contact" icon={<Mail />} label="contact" {...navbarParams} />
           <div className="navbar__item">
             <Login minimize={minimize} />
           </div>
         </div>
         <SearchResults
           parentStyle={minimize ? this.minimizeStyle : this.standardStyle}
-          active={this.state.searchActive}
+          active={searchActive}
           toggleSearch={this.toggleSearch}
         />
       </nav>
@@ -87,18 +94,24 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
   }
 
   private toggleSearch(): void {
-    this.setState({ searchActive: !this.state.searchActive });
+    const { searchActive, hideSearch, showSearch,
+      updateSearchInput } = this.props;
+    if (searchActive) {
+      hideSearch();
+      updateSearchInput('');
+    } else {
+      showSearch();
+    }
   }
-};
+}
 
 function mapStateToProps(state: IReduxState) {
   const { location } = state.router;
   return {
     route: location ? location.pathname : '/',
+    searchActive: state.display.searchActive,
     user: state.auth.user,
   };
 }
 
 export default Navbar;
-
-// <NavbarItem to="/portfolio" icon="book" label="portfolio" {...navbarParams} />

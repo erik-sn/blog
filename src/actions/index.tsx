@@ -35,13 +35,6 @@ export function articleSearch(searchValue: string): IAction {
 
 }
 
-export function resetArticleSearch(): IAction {
-  return {
-    payload: undefined,
-    type: ACTIONS.RESET_ARTICLE_SEARCH,
-  };
-}
-
 export function login(code: string): IAction {
   const request =  axios.post(`${API}/login/${code}/`);
   return {
@@ -65,5 +58,28 @@ export function logout(accessToken: string): IAction {
   return {
     payload: request,
     type: ACTIONS.LOGOUT,
+  };
+}
+
+
+/** display actions */
+export function updateSearchInput(searchValue: string) {
+  return {
+    payload: searchValue,
+    type: ACTIONS.UPDATE_SEARCH_INPUT,
+  };
+}
+
+export function showSearch(): IAction {
+  return {
+    payload: undefined,
+    type: ACTIONS.SHOW_SEARCH,
+  };
+}
+
+export function hideSearch(): IAction {
+  return {
+    payload: undefined,
+    type: ACTIONS.HIDE_SEARCH,
   };
 }
