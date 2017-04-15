@@ -11,6 +11,37 @@ export function fetchArticles(): IAction {
   };
 }
 
+export function articleSearch(searchValue: string): IAction {
+  // case where there is nothing to search
+  if (!searchValue.trim() || searchValue.trim().length < 4) {
+    return {
+      meta: {
+        searchValue,
+      },
+      payload: {
+        data: [],
+      },
+      type: ACTIONS.ARTICLE_SEARCH,
+    };
+  }
+  const request = axios.get(`${API}/articles/?search=${searchValue}`);
+  return {
+    meta: {
+      searchValue,
+    },
+    payload: request,
+    type: ACTIONS.ARTICLE_SEARCH,
+  };
+
+}
+
+export function resetArticleSearch(): IAction {
+  return {
+    payload: undefined,
+    type: ACTIONS.RESET_ARTICLE_SEARCH,
+  };
+}
+
 export function login(code: string): IAction {
   const request =  axios.post(`${API}/login/${code}/`);
   return {

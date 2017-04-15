@@ -1,10 +1,7 @@
 /* tslint:disable:no-var-requires object-literal-sort-keys */
 import * as autoprefixer from 'autoprefixer';
-import * as promise from 'es6-promise';
 import * as path from 'path';
 import * as webpack from 'webpack';
-
-promise.polyfill();
 
 const configuration: webpack.Configuration = {
   devtool: 'eval',
@@ -56,7 +53,7 @@ const configuration: webpack.Configuration = {
     ],
   },
   resolve: {
-    extensions: ['*', '.ts', '.tsx', '.json', '.', '.js', '.jsx'],  // the js extensions are necessary for webpack
+    extensions: ['*', '.ts', '.tsx', '.json', '.', '.js', '.jsx'],
   },
 };
 

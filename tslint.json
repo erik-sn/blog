@@ -2,8 +2,9 @@
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
     // enable tslint-react rules here
-    "jsx-no-lambda": true,
+    "jsx-no-lambda": 0,
     "quotemark": [true, "single", "jsx-double"],
-    "jsx-no-multiline-js": false
+    "jsx-wrap-multiline": 0,
+    "jsx-no-multiline-js": 0
   }
 }

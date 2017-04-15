@@ -46,16 +46,12 @@ const configuration: webpack.Configuration = {
       },
       {
         test: /\.jpe?g$|\.gif$|\.png$/i,
-        use: 'file-loader?name=/img/[name].[ext]',
+        use: 'file-loader?name=[name].[ext]',
       },
       {
         test: /\.ts$|\.tsx$/,
         use: ['awesome-typescript-loader'],
         include: path.join(__dirname, '../src'),
-      },
-      {
-        test: /\.json$/,
-        use: 'json-loader',
       },
     ],
   },

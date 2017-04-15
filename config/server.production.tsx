@@ -37,17 +37,14 @@ app.use('/static', express.static('dist'));
 app.use('/dist', express.static('dist'));
 
 /**
- * For every request send the URL to React Router The router will return the content that should be 
- * delivered to the user. If the URL does not match any route, a 404 will be returned. 
+ * For every request send the URL to React Router The router will return the content that should be
+ * delivered to the user. If the URL does not match any route, a 404 will be returned.
  *
  * React renders the component that should be returned in string format, and that string is served to the
  * client in an html form with static resources attached to it. After this page is loaded, any links o
  * routing that takes place will be handled purely by the javascript in react router.
  */
 const context: any = {};
-
-
-
 app.use('/', (req: any, res: any) => {
   axios.get(`${API}/articles/`).then((response: any) => {
     const articles: Article[] = response.data.map((object: any) => new Article(object));
@@ -62,7 +59,20 @@ app.use('/', (req: any, res: any) => {
       res.write(renderFullPage(html, appconfig.version, initialStore));
       res.end();
     }
-  });
+  })
+  .catch(() => {
+    const initialStore = createInitialStore([]);
+    const html = generateHtml(initialStore, req);
+    if (context.url) {
+      res.writeHead(302, {
+        Location: context.url,
+      });
+      res.end();
+    } else {
+      res.write(renderFullPage(html, appconfig.version, initialStore));
+      res.end();
+    }
+  });;
 });
 
 function createInitialStore(articles: Article[]): Store<any> {

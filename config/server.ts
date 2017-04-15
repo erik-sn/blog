@@ -9,6 +9,7 @@ new WebpackDevServer(webpack(configuration), {
   publicPath: configuration.output.publicPath,
 }).listen(3000, '0.0.0.0', (err: any, result: any) => {
   if (err) {
+    // tslint:disable-next-line:no-console
     return console.log(err);
   }
 });

@@ -13,6 +13,7 @@ import ArticleList from './blog/article_list';
 import Sidebar from './blog/social_sidebar';
 import Contact from './contact';
 import Demo from './demo/demo';
+import DisplaySearchResults from './display_search_results';
 import Footer from './footer';
 import FourOhFour from './fourohfour';
 import Navbar from './navbar/navbar';
@@ -34,7 +35,6 @@ class Application extends React.Component<IApplicationProps, {}> {
   public render(): JSX.Element {
     return (
       <div id="application__container">
-        <NavbarLogo />
         <Navbar />
         <Route path="/articles/:title" component={Sidebar} />
         <div id="application__child-container">
@@ -45,6 +45,7 @@ class Application extends React.Component<IApplicationProps, {}> {
               <Route path="/articles/:title" component={ArticleBody} />
               <Route path="/sandbox" component={Demo} />
               <Route path="/sandbox/:component" component={Demo} />
+              <Route path="/search" component={DisplaySearchResults} />
               <Route path="/portfolio" component={Portfolio} />
               <Route path="/contact" component={Contact} />
               <Route path="/about" component={About} />
@@ -53,8 +54,8 @@ class Application extends React.Component<IApplicationProps, {}> {
               <Route component={FourOhFour} />
             </Switch>
           </div>
-          <Footer />
         </div>
+        <Footer />
       </div>
     );
   };

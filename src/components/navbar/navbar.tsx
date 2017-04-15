@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { Motion, presets, spring } from 'react-motion';
 import { Link, withRouter } from 'react-router-dom';
@@ -6,11 +5,13 @@ import { Link, withRouter } from 'react-router-dom';
 import connect from '../../utils/connect';
 
 import { IReduxState } from '../../constants/interfaces';
+import Article from '../../models/article';
 import User from '../../models/user';
 import Login from './login';
 import NavbarItem from './navbar_item';
 import NavbarLogo from './navbar_logo';
 import NavbarSearch from './navbar_search';
+import SearchResults from './search_results';
 
 export interface INavbarProps {
   route?: string;
@@ -45,10 +46,9 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
   }
 
   public componentDidMount(): void {
-    const container = document.getElementById('application__child-container');
+    const container = document.getElementById('application__container');
     container.addEventListener('scroll', () => {
       const minimize = this.state.minimize;
-      const scroll = container.scrollTop;
       if (container.scrollTop > 40 && !minimize) {
         this.setState({ minimize: true });
       } else if (container.scrollTop <= 40 && minimize) {
@@ -57,7 +57,7 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
     });
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { minimize, searchActive } = this.state;
     const { route, user } = this.props;
     const navbarParams = { route, minimize, hide: !searchActive };
@@ -77,6 +77,11 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
             <Login minimize={minimize} />
           </div>
         </div>
+        <SearchResults
+          parentStyle={minimize ? this.minimizeStyle : this.standardStyle}
+          active={this.state.searchActive}
+          toggleSearch={this.toggleSearch}
+        />
       </nav>
     );
   }

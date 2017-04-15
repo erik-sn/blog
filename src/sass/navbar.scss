@@ -92,42 +92,6 @@
   overflow: hidden;
 }
 
-.navbar__search {
-  float: right;
-  height: 100%;
-  text-transform: uppercase;
-  color: $secondary;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  padding: 0px 10px;
-  width: 120px;
-
-  i {
-    cursor: pointer;
-  }
-}
-
-.navbar__search-container {
-  width: 100%;
-  height: 100%;
-
-  input {
-    margin-top: 10px;
-    height: calc(100% - 25px);
-    padding-top: 2px;
-    width: 100%;
-    border: 0;
-    background: none;
-    outline: none;
-    font-size: 1.25rem;
-    color: $secondary;
-  }
-
-  hr {
-    margin: 0px 15px 0px 0px !important;
-  }
-}
 
 #navbar__logo {
   opacity: 0.15;
@@ -254,4 +218,102 @@ $first-speed: 7s;
 .login__container-prompt:hover {
   opacity: 1;
   background: lighten($primary, 20%);
+}
+
+/**
+navbar search container
+*/
+.navbar__search {
+  float: right;
+  height: 100%;
+  text-transform: uppercase;
+  color: $secondary;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  width: 120px;
+
+  i {
+    cursor: pointer;
+  }
+}
+
+.navbar__search-container {
+  width: 100%;
+  height: 100%;
+
+  input {
+    margin-top: 10px;
+    height: calc(100% - 25px);
+    padding-left: 3px;
+    padding-top: 2px;
+    width: 100%;
+    border: 0;
+    background: none;
+    outline: none;
+    font-size: 1.25rem;
+    color: $secondary;
+  }
+
+  hr {
+    margin: 0px 15px 0px 0px !important;
+  }
+}
+
+#search__cancel {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  opacity: 0.4;
+}
+
+#search__cancel:hover {
+  opacity: 0.85;
+}
+
+/**
+Navbar search results
+*/
+.search_results__container {
+  position: absolute;
+  background: lighten($secondary, 5%);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  width: 325px;
+  right: 25px;
+  a {
+    color: darken($primary, 10%);
+    text-decoration: none;
+  }
+}
+
+.search_result__container {
+  max-width: 100%;
+  cursor: pointer;
+  padding: 7px 30px;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  
+  transition: 0.15s ease-in-out;
+
+}
+
+.search_result__container:hover {
+  background: darken($secondary, 20%);
+}
+
+.search_results__prompt-container {
+  cursor: pointer;
+  text-align: center;
+  background: darken($secondary, 15%);
+  padding: 10px 0px;
+  font-style: italic;
+  font-size: 0.85rem;
+  transition: 0.15s ease-in-out;
+}
+
+.search_results__prompt-container:hover {
+  background: darken($secondary, 25%);
 }

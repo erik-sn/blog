@@ -1,11 +1,14 @@
 @import "./style";
 
 .footer__container {
+  font-family: 'Lato', 'sans-serif';
   width: 100%;
-  padding: 35px 0px;
+  height: 40px;
   font-size: 1rem;
   background: $primary;
   color: $secondary;
+  padding: 15px 0px;
+  text-align: center;
 
   display: flex;
   justify-content: center;

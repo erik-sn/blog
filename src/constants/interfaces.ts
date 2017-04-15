@@ -30,6 +30,8 @@ export interface IReduxState {
 
 export interface IDataReducer {
   articles: Article[];
+  searchResults: Article[];
+  searchValue: string;
 }
 
 export interface IAuthReducer {
