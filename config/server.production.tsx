@@ -111,6 +111,7 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
   return `
     <!doctype html>
     <html>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <head>
         <title>Dev Sandbox</title>
         <link rel="icon" href="https://res.cloudinary.com/dvr87tqip/image/upload/v1492291999/sandbox_xb9z2t.png" type="image/x-icon" />
