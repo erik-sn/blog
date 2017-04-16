@@ -1,5 +1,9 @@
 @import "./style";
 
+.article_list__container {
+  margin-top: 25px;
+}
+
 .article__container {
   z-index: 3;
   color: $primary;

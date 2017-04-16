@@ -32,7 +32,7 @@ export class SearchResults extends React.Component<ISearchResultsProps, {}> {
       return <div />;
     }
 
-    const trimmedResults = searchResults.slice(0, 5);
+    const trimmedResults = searchResults ? searchResults.slice(0, 5) : [];
     return (
       <div
         id="search_results__id"
