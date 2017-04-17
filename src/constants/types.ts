@@ -1,5 +1,5 @@
-export const HOME_URL: string = 'http://sandbox.io';
-export const API: string = 'http://sandbox.io/api';
+export const HOME_URL: string = 'https://sandbox.io';
+export const API: string = 'https://sandbox.io/api';
 
 export const ACTIONS = {
   ARTICLE_SEARCH: 'ARTICLE_SEARCH',
