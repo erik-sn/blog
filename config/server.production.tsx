@@ -127,13 +127,6 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
       <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(initialStore.getState()).replace(/</g, '\\u003c')}
       </script>
-      <script src="https://devsandbox.io/assets/files/highlight.pack.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/python.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/javascript.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/typescript.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/scss.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/bash.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script>
       <script src="/static/bundle.min.${version}.js"></script>
       <style>
         body {

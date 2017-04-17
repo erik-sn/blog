@@ -55,6 +55,10 @@
   h2 {
     margin: 5px 0px !important;
   }
+
+  code {
+    @include code();
+  }
 }
 
 #edit_box__container {

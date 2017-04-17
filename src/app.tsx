@@ -10,9 +10,12 @@ import ConnectedRouter from './connected_router';
 import { IReduxState } from './constants/interfaces';
 import AuthMiddleware from './middleware/auth_middleware';
 import reducers from './reducers/root_reducer';
+import { configureMarkdown } from './utils/highlight';
 import { runPolyfills } from './utils/polyfills';
 
 runPolyfills();
+configureMarkdown();
+
 
 // tslint:disable-next-line:no-var-requires
 const { createBrowserHistory } = require('history'); // temporary until type definitions are worked out

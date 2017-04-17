@@ -16,38 +16,22 @@ export interface IArticleBodyProps {
 
 class ArticleBody extends React.Component<IArticleBodyProps, {}> {
 
-  public componentDidMount(): void {
-    this.highlightSyntax();
-  }
-
-  public componentDidUpdate(): void {
-    this.highlightSyntax();
-  }
-
   public render(): JSX.Element {
     const { activeArticle } = this.props;
     if (!activeArticle) {
       return <div>Loading...</div>;
     }
+    const html: string = marked(activeArticle ? activeArticle.text : '');
     return (
       <section className="article_body__container" >
         <h2>{activeArticle.title}</h2>
         <TagList article={activeArticle} />
         <ArticleInfo article={activeArticle} />
         <div id="article_body__text">
-          <div dangerouslySetInnerHTML={{ __html: marked(activeArticle ? activeArticle.text : '') }} />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </section>
     );
-  }
-
-  private highlightSyntax(): void {
-    if (typeof hljs !== 'undefined') {
-      const elements = document.getElementsByTagName('pre');
-      Array.prototype.forEach.call(elements, (element: any) => {
-        hljs.highlightBlock(element);
-      });
-    }
   }
 }
 

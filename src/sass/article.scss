@@ -82,12 +82,8 @@
 .article_body__container {
   margin: 35px 60px 60px 60px;
 
-  pre {
-    padding: 10px 25px;
-    margin: 0px 25px;
-    border-radius: 3px;
-    border: 1px solid #999;
-    box-shadow:         1px 1px 1px 0px #ccc;
+  code {
+    @include code();
   }
 }
 

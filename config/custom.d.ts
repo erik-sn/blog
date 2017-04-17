@@ -26,6 +26,13 @@ declare module 'js-cookie' {
   export = _;
 }
 
+declare module 'highlight.js/lib/highlight' {
+  export const getLanguage: any;
+  export const highlight: any;
+  export const listLanguages: any;
+  export const registerLanguage: any;
+}
+
 declare module 'extract-text-webpack-plugin' {
   const _: any;
   export = _;
@@ -40,11 +47,6 @@ declare interface ObjectConstructor {
 }
 
 declare module 'lodash.debounce' {
-  const _: any;
-  export = _;
-}
-
-declare module 'highlight.js' {
   const _: any;
   export = _;
 }
