@@ -56,6 +56,7 @@ app.use('/', (req: any, res: any) => {
       });
       res.end();
     } else {
+      res.header('Content-Type', 'text/html; charset=utf-8');
       res.write(renderFullPage(html, appconfig.version, initialStore));
       res.end();
     }
@@ -69,6 +70,7 @@ app.use('/', (req: any, res: any) => {
       });
       res.end();
     } else {
+      res.header('Content-Type', 'text/html; charset=utf-8');
       res.write(renderFullPage(html, appconfig.version, initialStore));
       res.end();
     }
