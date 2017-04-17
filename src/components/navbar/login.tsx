@@ -78,7 +78,7 @@ class Login extends React.Component<ILoginProps, any> {
     if (!foundCookie) {
       const state = randomString(15);
       cookie.set('randomstatestring', state, { expires: 360 });
-      const redirect: string = 'http://localhost:3000';
+      const redirect: string = 'https://devsandbox.io';
       const authString: string =  this.githubUrl +
                                 `?client_id=${this.githubClientId}` +
                                 '&redirect_uri=' + encodeURIComponent(redirect) +
