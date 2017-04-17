@@ -75,6 +75,20 @@
   }
 }
 
+#edit_box__published-container {
+  display: flex;
+  align-content: center;
+
+  span {
+    margin-top: 3px;
+  }
+
+  input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+  }
+}
+
 .box_container {
   width: 100%;
   padding: 15px;

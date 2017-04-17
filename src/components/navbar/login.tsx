@@ -14,6 +14,9 @@ import User from '../../models/user';
 import Lock from '../icons/lock';
 import Unlock from '../icons/unlock';
 
+// tslint:disable-next-line:no-var-requires
+const config = require('../../../config.json');
+
 interface ILoginProps {
   fetchArticles?: () => IAction;
   login?: (code: string) => IAction;
@@ -78,10 +81,9 @@ class Login extends React.Component<ILoginProps, any> {
     if (!foundCookie) {
       const state = randomString(15);
       cookie.set('randomstatestring', state, { expires: 360 });
-      const redirect: string = 'https://devsandbox.io';
       const authString: string =  this.githubUrl +
                                 `?client_id=${this.githubClientId}` +
-                                '&redirect_uri=' + encodeURIComponent(redirect) +
+                                '&redirect_uri=' + encodeURIComponent(config.redirectUrl) +
                                 `&state=${state}`;
       location.assign(authString);
     }

@@ -59,6 +59,10 @@ const configuration: webpack.Configuration = {
         use: ['awesome-typescript-loader'],
         include: path.join(__dirname, '../src'),
       },
+      {
+        test: /\.json$/,
+        use: 'json-loader',
+      },
     ],
   },
   resolve: {

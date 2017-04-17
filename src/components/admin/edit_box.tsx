@@ -49,7 +49,10 @@ class EditBox extends React.Component<IEditBoxProps, IEditBoxState> {
           onChange={change}
         />
         <input name="tags" onChange={this.handleTagChange} value={this.state.tagValue} />
-        <input type="checkbox" name="published" onChange={changePublish} checked={article.published} />
+        <div id="edit_box__published-container">
+          <span>Published:</span>
+          <input type="checkbox" name="published" onChange={changePublish} checked={article.published} />
+        </div>
       </div>
     );
   }
