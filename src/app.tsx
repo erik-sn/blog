@@ -43,6 +43,7 @@ if (process.env.NODE_ENV === 'production') {
   });
   delete window.__PRELOADED_STATE__;
   store =  createStoreWithMiddleware(reducers, preloadedState);
+
 } else {
   // development mode with redux dev tools
   store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&

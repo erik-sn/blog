@@ -116,9 +116,10 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <head>
         <title>Dev Sandbox</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="icon" href="https://res.cloudinary.com/dvr87tqip/image/upload/v1492291999/sandbox_xb9z2t.png" type="image/x-icon" />
         <link rel="stylesheet" href="/static/bundle.min.${version}.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/solarized-light.min.css">
       </head>
       <body id="app-body">
         <div id="app-container">${html}</div>
@@ -126,7 +127,22 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
       <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(initialStore.getState()).replace(/</g, '\\u003c')}
       </script>
+      <script src="https://devsandbox.io/assets/files/highlight.pack.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/python.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/javascript.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/typescript.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/scss.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/bash.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
       <script src="/static/bundle.min.${version}.js"></script>
+      <style>
+        body {
+          background-image: URL('https://res.cloudinary.com/dvr87tqip/image/upload/v1492211282/gearbox_cleaned_ijempx.png');
+          background-position-y: calc(100vh - 650px);
+          background-position-x: 10vw;
+          background-repeat: no-repeat;
+        }
+      </style>
       <script>
         var _rollbarConfig = {
             accessToken: "8a20899de22c45598afcbbc4bcf12dd2",

@@ -8,26 +8,48 @@ import Article from '../../models/article';
 import ArticleInfo from './article_info';
 import TagList from './tag_list';
 
+declare var hljs: any;
+
 export interface IArticleBodyProps {
   activeArticle: Article;
 }
 
-const ArticleBody = (props: IArticleBodyProps) => {
-  const { activeArticle } = props;
-  if (!activeArticle) {
-    return <div>Loading...</div>;
+class ArticleBody extends React.Component<IArticleBodyProps, {}> {
+
+  public componentDidMount(): void {
+    this.highlightSyntax();
   }
-  return (
-    <section className="article_body__container" >
-      <h2>{activeArticle.title}</h2>
-      <TagList article={activeArticle} />
-      <ArticleInfo article={activeArticle} />
-      <div id="article_body__text">
-        <div dangerouslySetInnerHTML={{ __html: marked(activeArticle ? activeArticle.text : '') }} />
-      </div>
-    </section>
-  );
-};
+
+  public componentDidUpdate(): void {
+    this.highlightSyntax();
+  }
+
+  public render(): JSX.Element {
+    const { activeArticle } = this.props;
+    if (!activeArticle) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <section className="article_body__container" >
+        <h2>{activeArticle.title}</h2>
+        <TagList article={activeArticle} />
+        <ArticleInfo article={activeArticle} />
+        <div id="article_body__text">
+          <div dangerouslySetInnerHTML={{ __html: marked(activeArticle ? activeArticle.text : '') }} />
+        </div>
+      </section>
+    );
+  }
+
+  private highlightSyntax(): void {
+    if (typeof hljs !== 'undefined') {
+      const elements = document.getElementsByTagName('pre');
+      Array.prototype.forEach.call(elements, (element: any) => {
+        hljs.highlightBlock(element);
+      });
+    }
+  }
+}
 
 function mapStateToProps(state: IReduxState, ownProps: any): {} {
   const inputUrlTitle = ownProps.match.params.title;

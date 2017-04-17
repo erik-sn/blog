@@ -1,7 +1,9 @@
 /* tslint:disable:no-var-requires object-literal-sort-keys */
 import * as autoprefixer from 'autoprefixer';
+import * as hljs from 'highlight.js';
 import * as path from 'path';
 import * as webpack from 'webpack';
+
 
 const configuration: webpack.Configuration = {
   devtool: 'eval',

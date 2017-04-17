@@ -44,6 +44,11 @@ declare module 'lodash.debounce' {
   export = _;
 }
 
+declare module 'highlight.js' {
+  const _: any;
+  export = _;
+}
+
 declare module 'react-router' {
   export const Router: any;
   export const StaticRouter: any;
