@@ -24,6 +24,13 @@ class EditBox extends React.Component<IEditBoxProps, IEditBoxState> {
     this.handleTagChange = this.handleTagChange.bind(this);
   }
 
+  public componentWillReceiveProps(nextProps: IEditBoxProps) {
+    if (this.props.article.id !== nextProps.article.id) {
+      const tagValue = this.parseInitialTagValue(nextProps.article.tags);
+      this.setState({ tagValue });
+    }
+  }
+
   public parseInitialTagValue(tags: Tag[]): string {
     return tags.reduce((str, tag) => str + tag.name + ', ', '');
   }

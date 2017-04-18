@@ -30,7 +30,7 @@ class Article {
     this.description = description;
     this.tags = tags.map((tag) => new Tag(tag));
     this.text = text;
-    this.timeToRead = Math.ceil(text.split(' ').length / 200);
+    this.timeToRead = Math.ceil(text.split(' ').length / 100);
     this.dateString = created;
     this.date = new Date(created);
     this.url_title = this.formatForUrl(title);

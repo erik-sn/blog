@@ -92,7 +92,11 @@ export default class Writer extends React.Component<IWriterProps, IWriterState> 
   public handleInputChange({ currentTarget }: React.FormEvent<HTMLInputElement>): void {
     const updatedArticle: any = this.state.article.clone();
     if (currentTarget.name === 'tags') {
-      const tagNames: string[] = currentTarget.value.replace(/ /g, '').split(',');
+      const tagValue = currentTarget.value.replace(/ /g, '');
+      let tagNames: string[] = [];
+      if (tagValue) {
+        tagNames = tagValue.split(',');
+      }
       updatedArticle.tags = tagNames.map((name) => new Tag({ id: -1, name }));
     } else {
       updatedArticle[currentTarget.name] = currentTarget.value;

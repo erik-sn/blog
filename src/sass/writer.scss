@@ -52,13 +52,7 @@
     flex-direction: column;
   }
 
-  h2 {
-    margin: 5px 0px !important;
-  }
-
-  code {
-    @include code();
-  }
+  @include article-display();
 }
 
 #edit_box__container {
