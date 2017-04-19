@@ -117,6 +117,7 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
       <head>
         <title>Dev Sandbox</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/solarized-light.min.css">
         <link rel="icon" href="https://res.cloudinary.com/dvr87tqip/image/upload/v1492291999/sandbox_xb9z2t.png" type="image/x-icon" />
         <link rel="stylesheet" href="/static/bundle.min.${version}.css">
       </head>
