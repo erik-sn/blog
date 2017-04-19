@@ -20,9 +20,11 @@ import { IReduxState } from '../src/constants/interfaces';
 import { API } from '../src/constants/types';
 import Article from '../src/models/article';
 import reducers from '../src/reducers/root_reducer';
+import { configureMarkdown } from '../src/utils/highlight';
 
 const appconfig = require('../package.json');
 
+configureMarkdown();
 
 let server: any;
 
