@@ -22,8 +22,6 @@ import Article from '../src/models/article';
 import reducers from '../src/reducers/root_reducer';
 import { configureMarkdown } from '../src/utils/highlight';
 
-const appconfig = require('../package.json');
-
 configureMarkdown();
 
 let server: any;
@@ -59,7 +57,7 @@ app.use('/', (req: any, res: any) => {
       res.end();
     } else {
       res.header('Content-Type', 'text/html; charset=utf-8');
-      res.write(renderFullPage(html, appconfig.version, initialStore));
+      res.write(renderFullPage(html, initialStore));
       res.end();
     }
   })
@@ -73,10 +71,10 @@ app.use('/', (req: any, res: any) => {
       res.end();
     } else {
       res.header('Content-Type', 'text/html; charset=utf-8');
-      res.write(renderFullPage(html, appconfig.version, initialStore));
+      res.write(renderFullPage(html, initialStore));
       res.end();
     }
-  });;
+  });
 });
 
 function createInitialStore(articles: Article[]): Store<any> {
@@ -111,18 +109,18 @@ const rollBarScript: string = `!function(r){function e(n){if(o[n])return o[n].ex
  * @param {string} version - application version from package.json
  * @return {string} full html page
  */
-function renderFullPage(html: string, version: string, initialStore: Store<any>) {
+function renderFullPage(html: string, initialStore: Store<any>) {
   return `
     <!doctype html>
     <html>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dev Sandbox</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/solarized-light.min.css">
         <link rel="icon" href="https://res.cloudinary.com/dvr87tqip/image/upload/v1492291999/sandbox_xb9z2t.png" type="image/x-icon" />
-        <link rel="stylesheet" href="/static/bundle.min.${version}.css">
+        <link rel="stylesheet" href="/static/bundle.min.001.css">
       </head>
       <body id="app-body">
         <div id="app-container">${html}</div>
@@ -130,7 +128,7 @@ function renderFullPage(html: string, version: string, initialStore: Store<any>)
       <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(initialStore.getState()).replace(/</g, '\\u003c')}
       </script>
-      <script src="/static/bundle.min.${version}.js"></script>
+      <script src="/static/bundle.min.001.js"></script>
       <style>
         body {
           background-image: URL('https://res.cloudinary.com/dvr87tqip/image/upload/v1492211282/gearbox_cleaned_ijempx.png');

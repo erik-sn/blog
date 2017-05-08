@@ -26,4 +26,3 @@ function mapStateToProps(state: IReduxState) {
 }
 
 export default connect(mapStateToProps)(DisplaySearchResults);
-

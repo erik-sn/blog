@@ -7,4 +7,3 @@ const NoResults = () => (
 );
 
 export default NoResults;
-

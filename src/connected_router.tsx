@@ -1,3 +1,4 @@
+/* tslint:disable */
 import * as invariant from 'invariant';
 import * as React from 'react';
 import { Component, PropTypes } from 'react';

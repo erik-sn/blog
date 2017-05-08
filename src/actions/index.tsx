@@ -61,7 +61,6 @@ export function logout(accessToken: string): IAction {
   };
 }
 
-
 /** display actions */
 export function updateSearchInput(searchValue: string) {
   return {

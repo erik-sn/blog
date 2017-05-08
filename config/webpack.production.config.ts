@@ -6,7 +6,6 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const appconfig = require('../package.json');
 promise.polyfill();
 
 const configuration: webpack.Configuration = {
@@ -16,7 +15,7 @@ const configuration: webpack.Configuration = {
   ],
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: 'bundle.min.' + appconfig.version + '.js',
+    filename: 'bundle.min.001.js',
     publicPath: '/dist/',
   },
   plugins: [
@@ -26,7 +25,7 @@ const configuration: webpack.Configuration = {
       },
     }),
     new ExtractTextPlugin({
-      filename: '/bundle.min.' + appconfig.version + '.css',
+      filename: '/bundle.min.001.css',
       allChunks: true,
     }),
     new webpack.optimize.UglifyJsPlugin({

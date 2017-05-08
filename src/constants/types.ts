@@ -1,8 +1,7 @@
 // tslint:disable-next-line:no-var-requires
-const config = require('../../config.json');
 
-export const HOME_URL: string = config.api;
-export const API: string = `${config.api}/api`;
+export const HOME_URL: string = 'https://devsandbox.io';
+export const API: string = `${HOME_URL}/api`;
 
 export const ACTIONS = {
   ARTICLE_SEARCH: 'ARTICLE_SEARCH',
