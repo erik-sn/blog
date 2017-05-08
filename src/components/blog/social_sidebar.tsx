@@ -46,7 +46,10 @@ class SocialSidebar extends React.Component<ISocialSidebarProps, ISocialSidebarS
         </div>
         <div className="social_sidebar__link">
           <a href={`https://plus.google.com/share?url=${url}`}>
-            <img width="40px" src="https://res.cloudinary.com/dvr87tqip/image/upload/v1492220299/googleplus_xmzuzl.png" />
+            <img
+              width="40px"
+              src="https://res.cloudinary.com/dvr87tqip/image/upload/v1492220299/googleplus_xmzuzl.png"
+            />
           </a>
         </div>
       </div>

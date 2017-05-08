@@ -16,7 +16,6 @@ import { runPolyfills } from './utils/polyfills';
 runPolyfills();
 configureMarkdown();
 
-
 // tslint:disable-next-line:no-var-requires
 const { createBrowserHistory } = require('history'); // temporary until type definitions are worked out
 

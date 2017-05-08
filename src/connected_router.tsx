@@ -1,3 +1,4 @@
+/* tslint:disable */
 import * as invariant from 'invariant';
 import * as React from 'react';
 import { Component, PropTypes } from 'react';
@@ -6,16 +7,6 @@ import { Route, Router } from 'react-router-dom';
 export const LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
 
 class ConnectedRouter extends Component<any, any> {
-
-  static propTypes = {
-    store: PropTypes.object,
-    history: PropTypes.object,
-    children: PropTypes.node,
-  };
-
-  static contextTypes = {
-    store: PropTypes.object,
-  };
 
   public componentWillMount(): void {
     const { children } = this.props;
@@ -33,6 +24,7 @@ class ConnectedRouter extends Component<any, any> {
       <Router {...props} history={history}>
         <Route render={({ location }: any) => {
             return <MountedRoute store={store} location={location} children={children} />;
+          // tslint:disable-next-line:jsx-alignment
           }}/>
       </Router>
     );

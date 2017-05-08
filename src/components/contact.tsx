@@ -1,3 +1,4 @@
+// tslint:disable:max-line-length
 import * as React from 'react';
 
 const Contact = (): JSX.Element => (
@@ -15,7 +16,10 @@ const Contact = (): JSX.Element => (
       </div>
       <div className="social_sidebar__link">
         <a href="https://twitter.com/en_says/">
-          <img width="45px" src="https://res.cloudinary.com/dvr87tqip/image/upload/v1490075088/mfg-labs-iconset_2014-07-29_twitter_circle_64_0_000000_none_z7urtm.png" />
+          <img
+            width="45px"
+            src="https://res.cloudinary.com/dvr87tqip/image/upload/v1490075088/mfg-labs-iconset_2014-07-29_twitter_circle_64_0_000000_none_z7urtm.png"
+          />
         </a>
       </div>
       <div className="social_sidebar__link">

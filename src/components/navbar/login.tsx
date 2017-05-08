@@ -60,10 +60,6 @@ class Login extends React.Component<ILoginProps, any> {
       if (cookieState === urlState) {
         cookie.remove('randomstatestring');
         this.props.login(urlCode);
-      } else {
-        console.log(cookieState);
-        console.log(urlState);
-        console.error('State does not match!');
       }
     }
     if (urlCode) {
