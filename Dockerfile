@@ -7,12 +7,10 @@ ADD . /sandbox
 
 # Install dependencies
 RUN yarn
+RUN npm rebuild node-sass
 
 # Build the app
-RUN npm run build
+RUN npm run production
 
 # Expose the app port
 EXPOSE 4000
-
-# Start the app
-CMD npm start
