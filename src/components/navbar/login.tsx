@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { fetchArticles, login, logout, refresh } from '../../actions/';
 import { IAction, IReduxState } from '../../constants/interfaces';
-import { API } from '../../constants/types';
+import { API, HOME_URL } from '../../constants/types';
 import connect from '../../utils/connect';
 import { getParameterByName, randomString } from '../../utils/utils';
 
@@ -13,9 +13,6 @@ import Token from '../../models/token';
 import User from '../../models/user';
 import Lock from '../icons/lock';
 import Unlock from '../icons/unlock';
-
-// tslint:disable-next-line:no-var-requires
-const config = require('../../../config.json');
 
 interface ILoginProps {
   fetchArticles?: () => IAction;
@@ -79,7 +76,7 @@ class Login extends React.Component<ILoginProps, any> {
       cookie.set('randomstatestring', state, { expires: 360 });
       const authString: string =  this.githubUrl +
                                 `?client_id=${this.githubClientId}` +
-                                '&redirect_uri=' + encodeURIComponent(config.redirectUrl) +
+                                '&redirect_uri=' + encodeURIComponent(HOME_URL) +
                                 `&state=${state}`;
       location.assign(authString);
     }
