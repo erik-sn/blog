@@ -18,9 +18,9 @@ const About = (): JSX.Element => (
       My goal for this website is a place to learn, test and share the
     things I am working on.</p>
     <p>
-      As a developer I primarily work in ${python} and JavaScript.
-      In the JavaScript world I mostly work in ${react} and ${typescript}. In
-      python I make heavy use of ${django} and ${drf} as well as data analysis
+      As a developer I primarily work in {python} and JavaScript.
+      In the JavaScript world I mostly work in {react} and {typescript}. In
+      python I make heavy use of {django} and {drf} as well as data analysis
       packages like numpy, scipy and scikit-learn. My development
       work revolves around creating rich user interfaces and data analysis in a
       manufacturing environment, so the tools I use reflect that.

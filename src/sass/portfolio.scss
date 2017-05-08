@@ -1,0 +1,75 @@
+@import "./style";
+
+.portfolio__container {
+  @include fluid-type(25.5rem, 40rem, $h5-min, $h5-max);
+  color: $primary;
+  margin-top: 60px;
+  padding: 0px 50px;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 800px;
+
+  h2, h5 {
+    padding: 0px;
+    margin: 5px 0px;
+  }
+}
+
+.portfolio__header {
+  font-size: 1.4rem;
+  padding: 25px 0px;
+  margin-bottom: 25px;
+}
+
+.portfolio__panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__title {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  img {
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+}
+
+.portfolio__content {
+  flex: 1 1 auto;
+  display: flex;
+}
+
+.portfolio__panel-text {
+  display: flex;
+  flex: 1 1 400px;
+  flex-direction: column;
+}
+
+.portfolio__description {
+  padding: 10px 0px;
+}
+
+.portfolio__technologies {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  a {
+    padding: 2px 5px;
+    font-size: 0.85rem;
+  }
+}
+
+.portfolio__panel-img {
+  flex: 1 1 500px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

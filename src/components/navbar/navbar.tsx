@@ -79,7 +79,7 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
           {user && user.isStaff
             ? <NavbarItem to="/write" icon={<Write />} label="Write" {...navbarParams} />
             : undefined}
-          <NavbarItem to="/sandbox" icon={<Drawer />} label="sandbox" {...navbarParams} />
+          <NavbarItem to="/portfolio" icon={<Drawer />} label="portfolio" {...navbarParams} />
           <NavbarItem to="/about" icon={<Profile />} label="about" {...navbarParams} />
           <NavbarItem to="/contact" icon={<Mail />} label="contact" {...navbarParams} />
           <div className="navbar__item">
