@@ -35,12 +35,18 @@
   img {
     margin-left: 15px;
     margin-top: 5px;
+    transition: 0.15s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.1);
   }
 }
 
 .portfolio__content {
   flex: 1 1 auto;
   display: flex;
+  height: 300px;
 }
 
 .portfolio__panel-text {
@@ -67,9 +73,14 @@
 
 .portfolio__panel-img {
   flex: 1 1 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
 
   img {
     max-width: 100%;
     height: auto;
+    max-height: 100%;
   }
 }

@@ -33,7 +33,11 @@ const Portfolio = (): JSX.Element => (
         fast and flexible.
       `}
       link=""
-      images={['https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png']}
+      images={[
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
+        'http://res.cloudinary.com/dvr87tqip/image/upload/v1461600802/zfilter_tu10gc.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1468884103/calc_ldcgey.png',
+      ]}
       tech={[react, redux, typescript, immutablejs, drf]}
       textLeft={true}
     />
@@ -134,12 +138,6 @@ const Portfolio = (): JSX.Element => (
       textLeft={true}
     />
     <hr></hr>
-    <h1>Free Code Camp</h1>
-    <div className="portfolio__header">
-    {fcc} was extremely helpful for the process of learning front-end web development. These
-      are a handful of small mini-projects I worked on while following their tutorials:
-    </div>
-    <hr></hr>
     <Panel
       title="Simon Says"
       github="https://github.com/erik-sn/react-simon/"
@@ -186,14 +184,14 @@ const Portfolio = (): JSX.Element => (
     />
     <hr></hr>
     <Panel
-      title="Tic-Tac-Toe"
+      title="Calculator"
       github="https://github.com/erik-sn/react-calc/"
       description={`
         A simple browser-based calculator.
       `}
       link=""
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1468884103/calc_ldcgey.png',
       ]}
       tech={[react]}
       textLeft={true}
