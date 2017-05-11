@@ -32,7 +32,9 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
     return (
       <div className="portfolio__panel" >
         <div className="portfolio__title">
-          <div><h2>{title}</h2></div>
+          <div><h2>
+            {link ? <a href={link}>{title}</a> : title}
+          </h2></div>
           <a href={github} >
             <img height="30px" src={githubIcon} alt="github" />
           </a>
@@ -52,11 +54,13 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
               </div>
             </div>
           </div>
-          <div className="portfolio__panel-img">
-            <div className="portfolio__panel-slider">
-              <img src={images[this.state.imgIndex]} alt="panel image" />
-            </div>
-          </div>
+          {images.length > 0
+            ? <div className="portfolio__panel-img">
+                <div className="portfolio__panel-slider">
+                  <img src={images[this.state.imgIndex]} alt="panel image" />
+                </div>
+              </div>
+            : undefined}
         </div>
       </div>
     );

@@ -69,7 +69,7 @@ const Portfolio = (): JSX.Element => (
         utilize it to automate daily tasks.
       `}
       link=""
-      images={['https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png']}
+      images={[]}
       tech={[python]}
       textLeft={true}
     />
@@ -81,8 +81,10 @@ const Portfolio = (): JSX.Element => (
       of JavaScript objects, a configuration object and converts
       it to a filterable, sortable table.
       `}
-      link=""
-      images={['https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png']}
+      link="https://devsandbox.io/filtertable"
+      images={[
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494467879/filtertable1_h3h5it.png',
+      ]}
       tech={[typescript]}
       textLeft={false}
     />
@@ -97,8 +99,11 @@ const Portfolio = (): JSX.Element => (
         theorists were invited to submit "strategies" to compete. The API
         provides start tournaments and retrieve their results.
       `}
-      link=""
-      images={['https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png']}
+      link="https://devsandbox.io/axelrod/api/"
+      images={[
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461739/axelrod_api_amok9n.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461739/axelrod_api2_mal2fs.png',
+      ]}
       tech={[python, drf, docker]}
       textLeft={true}
     />
@@ -112,9 +117,11 @@ const Portfolio = (): JSX.Element => (
         and designed to emulate basic operations that the python based library uses. This
         includes starting a contest then retrieving and visualizing results.
       `}
-      link=""
+      link="https://devsandbox.io/axelrod"
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461399/axelrod3_k0gmur.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461399/axelrod2_jbatj8.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461398/axelrod1_u0ykaj.png',
       ]}
       tech={[react, redux, typescript, docker]}
       textLeft={false}
@@ -131,9 +138,7 @@ const Portfolio = (): JSX.Element => (
         a react application in ES6 JavaScript or TypeScript for the client side.
       `}
       link=""
-      images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
-      ]}
+      images={[]}
       tech={[react, redux, typescript, django, drf]}
       textLeft={true}
     />
@@ -146,9 +151,9 @@ const Portfolio = (): JSX.Element => (
         computer's moves in a browser based version of the class electronic
         game Simon.
       `}
-      link=""
+      link="https://devsandbox.io/simon"
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461181/simon_nclwqm.png',
       ]}
       tech={[react]}
       textLeft={false}
@@ -161,9 +166,9 @@ const Portfolio = (): JSX.Element => (
         A productivity clock that allows the user to set times
         for work & break.
       `}
-      link=""
+      link="https://devsandbox.io/pomodoro"
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494461084/pomodoro_bszf56.png',
       ]}
       tech={[react]}
       textLeft={true}
@@ -175,9 +180,9 @@ const Portfolio = (): JSX.Element => (
       description={`
         A basic implementation of a tic tac toe game with an "unbeatable" opponent.
       `}
-      link=""
+      link="https://devsandbox.io/tictactoe"
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494460824/tictactoe_ihatch.png',
       ]}
       tech={[react]}
       textLeft={false}
@@ -189,9 +194,9 @@ const Portfolio = (): JSX.Element => (
       description={`
         A simple browser-based calculator.
       `}
-      link=""
+      link="https://devsandbox.io/calculator"
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1468884103/calc_ldcgey.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494460961/calculator_heza96.png',
       ]}
       tech={[react]}
       textLeft={true}
