@@ -10,6 +10,7 @@ interface IPanelProps {
   images: string[];
   tech: JSX.Element[];
   textLeft?: boolean;
+  height?: number;
 }
 
 interface IPanelState {
@@ -28,7 +29,8 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
   }
 
   public render(): JSX.Element {
-    const { title, github, link, description, tech, images, textLeft } = this.props;
+    const { title, github, link, description, height,
+      tech, images, textLeft } = this.props;
     return (
       <div className="portfolio__panel" >
         <div className="portfolio__title">
@@ -41,7 +43,9 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
         </div>
         <div
           className="portfolio__content"
-          style={{ flexDirection: textLeft ? 'row' : 'row-reverse' }}
+          style={{
+            flexDirection: textLeft ? 'row' : 'row-reverse',
+          }}
         >
           <div className="portfolio__panel-text">
             <div className="portfolio__description">
@@ -67,10 +71,6 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
   }
 
   private componentDidMount(): void {
-    const node = findDOMNode(this);
-    const container = node.querySelector('.portfolio__panel-img');
-    const width = container.clientWidth;
-
     const { images } = this.props;
     const maxLength = images.length - 1;
     setInterval(() => {
@@ -79,10 +79,8 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
         return;
       } else if (imgIndex === maxLength) {
         this.setState({ imgIndex: 0 });
-        // container.scrollLeft = imgIndex * width;
       } else {
         this.setState({ imgIndex: imgIndex + 1 });
-        // container.scrollLeft = imgIndex * width;
       }
     }, 6000);
   }

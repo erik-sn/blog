@@ -32,11 +32,12 @@ const Portfolio = (): JSX.Element => (
         plotting utilities to make building and deploying new modules
         fast and flexible.
       `}
-      link=""
+      link="https://devsandbox.io/hierarchy/atl/processing"
       images={[
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png',
-        'http://res.cloudinary.com/dvr87tqip/image/upload/v1461600802/zfilter_tu10gc.png',
-        'https://res.cloudinary.com/dvr87tqip/image/upload/v1468884103/calc_ldcgey.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494783929/hierarchy1_cfyblg.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494783927/hierarchy3_eymyi0.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494783930/hierarchy2_znmy9k.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494783929/hierarchy4_aygefg.png',
       ]}
       tech={[react, redux, typescript, immutablejs, drf]}
       textLeft={true}
@@ -54,7 +55,10 @@ const Portfolio = (): JSX.Element => (
         tags and equations, then analyze and visualize them.
       `}
       link=""
-      images={['https://res.cloudinary.com/dvr87tqip/image/upload/v1461600714/specmanager_pmcoej.png']}
+      images={[
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494548734/tagmap1_iuso2z.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494548734/tagmap2_zfjzsv.png',
+      ]}
       tech={[react, redux, pi, drf]}
       textLeft={false}
     />
@@ -72,6 +76,7 @@ const Portfolio = (): JSX.Element => (
       images={[]}
       tech={[python]}
       textLeft={true}
+      height={175}
     />
     <hr></hr>
     <Panel
@@ -84,6 +89,7 @@ const Portfolio = (): JSX.Element => (
       link="https://devsandbox.io/filtertable"
       images={[
         'https://res.cloudinary.com/dvr87tqip/image/upload/v1494467879/filtertable1_h3h5it.png',
+        'https://res.cloudinary.com/dvr87tqip/image/upload/v1494783929/filter_table_style_ytgoko.png',
       ]}
       tech={[typescript]}
       textLeft={false}
@@ -141,6 +147,7 @@ const Portfolio = (): JSX.Element => (
       images={[]}
       tech={[react, redux, typescript, django, drf]}
       textLeft={true}
+      height={175}
     />
     <hr></hr>
     <Panel

@@ -9,6 +9,12 @@
   flex-direction: column;
   max-width: 800px;
 
+  transition: padding 0.25s ease-in-out;
+
+  @media(max-width: 700px) {
+    padding: 0px 10px;
+  }
+
   h2, h5 {
     padding: 0px;
     margin: 5px 0px;
@@ -16,14 +22,17 @@
 }
 
 .portfolio__header {
+  @include fluid-type(25.5rem, 40rem, $h4-min, $h4-max);
   font-size: 1.4rem;
   padding: 25px 0px;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .portfolio__panel {
   display: flex;
   flex-direction: column;
+  padding: 15px 0px;
 }
 
 .portfolio__title {
@@ -44,15 +53,21 @@
 }
 
 .portfolio__content {
-  flex: 1 1 auto;
+  flex: 1;
   display: flex;
-  height: 300px;
+  // height: 300px;
+  flex-direction: row;
+
+  @media(max-width: 800px) {
+    flex-direction: column-reverse !important;
+  }
 }
 
 .portfolio__panel-text {
   display: flex;
-  flex: 1 1 400px;
+  flex: 1;
   flex-direction: column;
+  padding: 15px;
 }
 
 .portfolio__description {
@@ -72,15 +87,16 @@
 }
 
 .portfolio__panel-img {
-  flex: 1 1 500px;
+  flex: 1;
   text-align: center;
   display: flex;
   flex-direction: row;
   overflow-y: hidden;
+  
 
   img {
     max-width: 100%;
-    height: auto;
+    width: 100%;
     max-height: 100%;
   }
 }
