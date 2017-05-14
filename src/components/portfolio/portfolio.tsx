@@ -21,7 +21,7 @@ const Portfolio = (): JSX.Element => (
       repositories, and most have sample projects hosted on this site you can
       navigate to by clicking their titles.
     </div>
-    <hr></hr>
+    <hr />
     <Panel
       title="Hierarchy"
       github="https://github.com/erik-sn/hierarchy"
@@ -42,7 +42,7 @@ const Portfolio = (): JSX.Element => (
       tech={[react, redux, typescript, immutablejs, drf]}
       textLeft={true}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Tag Map"
       github="https://github.com/erik-sn/tagmap"
@@ -62,7 +62,7 @@ const Portfolio = (): JSX.Element => (
       tech={[react, redux, pi, drf]}
       textLeft={false}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Xlwrap"
       github="https://github.com/erik-sn/xlwrap"
@@ -78,7 +78,7 @@ const Portfolio = (): JSX.Element => (
       textLeft={true}
       height={175}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Filter-Table"
       github="https://github.com/erik-sn/filter-table/"
@@ -94,7 +94,7 @@ const Portfolio = (): JSX.Element => (
       tech={[typescript]}
       textLeft={false}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Axelrod API"
       github="https://github.com/Axelrod-Python/axelrod-api/"
@@ -113,7 +113,7 @@ const Portfolio = (): JSX.Element => (
       tech={[python, drf, docker]}
       textLeft={true}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Axelrod UI"
       github="https://github.com/Axelrod-Python/axelrod-ui/"
@@ -132,7 +132,7 @@ const Portfolio = (): JSX.Element => (
       tech={[react, redux, typescript, docker]}
       textLeft={false}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Web Application Boilerplate"
       github="https://github.com/erik-sn/webapp/"
@@ -149,7 +149,7 @@ const Portfolio = (): JSX.Element => (
       textLeft={true}
       height={175}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Simon Says"
       github="https://github.com/erik-sn/react-simon/"
@@ -165,7 +165,7 @@ const Portfolio = (): JSX.Element => (
       tech={[react]}
       textLeft={false}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Pomodoro"
       github="https://github.com/erik-sn/react-pomodoro/"
@@ -180,7 +180,7 @@ const Portfolio = (): JSX.Element => (
       tech={[react]}
       textLeft={true}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Tic-Tac-Toe"
       github="https://github.com/erik-sn/react-tictactoe/"
@@ -194,7 +194,7 @@ const Portfolio = (): JSX.Element => (
       tech={[react]}
       textLeft={false}
     />
-    <hr></hr>
+    <hr />
     <Panel
       title="Calculator"
       github="https://github.com/erik-sn/react-calc/"

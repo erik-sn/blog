@@ -7,6 +7,7 @@ ADD . /sandbox
 
 # Install dependencies
 RUN yarn
+RUN yarn add --dev typescript
 RUN npm rebuild node-sass
 
 # Build the app
