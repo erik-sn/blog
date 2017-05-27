@@ -19,6 +19,14 @@
     padding: 0px;
     margin: 5px 0px;
   }
+
+  a {
+    color: darken(skyblue, 35%);
+  }
+
+  a:visited {
+    color: darken(skyblue, 60%);
+  }
 }
 
 .portfolio__header {

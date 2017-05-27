@@ -15,6 +15,7 @@ interface IPanelProps {
 
 interface IPanelState {
   imgIndex: number;
+  intervalId: any;
 }
 
 const githubIcon = 'https://res.cloudinary.com/dvr87tqip/image/upload/v1490075088/GitHub-Mark-64px_y3e5ic.png';
@@ -25,6 +26,7 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
     super(props);
     this.state = {
       imgIndex: 0,
+      intervalId: undefined,
     };
   }
 
@@ -73,7 +75,7 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
   private componentDidMount(): void {
     const { images } = this.props;
     const maxLength = images.length - 1;
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       const { imgIndex } = this.state;
       if (maxLength === 0) {
         return;
@@ -83,6 +85,11 @@ class Panel extends React.Component<IPanelProps, IPanelState> {
         this.setState({ imgIndex: imgIndex + 1 });
       }
     }, 6000);
+    this.setState({ intervalId });
+  }
+
+  private componentWillUnmount() {
+    clearInterval(this.state.intervalId);
   }
 
 };

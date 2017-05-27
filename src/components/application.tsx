@@ -38,7 +38,7 @@ class Application extends React.Component<IApplicationProps, {}> {
         <Route path="/articles/:title" component={Sidebar} />
         <div id="application__child-container">
           <div id="application__inner-container">
-            <Switch>
+            <Switch onChange={() => window.scrollTo(0, 0)} >
               <Route exact={true} path="/" component={ArticleList} />
               <Route exact={true} path="/articles" component={ArticleList} />
               <Route path="/articles/:title" component={ArticleBody} />

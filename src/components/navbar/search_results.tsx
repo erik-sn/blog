@@ -55,12 +55,12 @@ export class SearchResults extends React.Component<ISearchResultsProps, {}> {
 
   private renderPrompt(): JSX.Element {
     const { searchResults, searchValue, toggleSearch } = this.props;
-    if (searchResults.length > 5) {
+    if (!searchResults || searchResults.length === 0) {
+      return <NoResults />;
+    } else if (searchResults.length > 5) {
       return <PromptAll toggleSearch={toggleSearch} />;
     } else if (searchValue.trim().length < 4) {
       return <QueryTooShort />;
-    } else if (searchResults.length === 0) {
-      return <NoResults />;
     }
     return undefined;
   }

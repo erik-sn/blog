@@ -188,7 +188,14 @@ Navbar search results
     color: darken($primary, 10%);
     text-decoration: none;
   }
+  
+  a:nth-child(even) {
+    div {
+      background: darken($secondary, 10%);
+    }
+  }
 }
+
 
 .search_result__container {
   max-width: 100%;
@@ -200,8 +207,8 @@ Navbar search results
   overflow: hidden;
   
   transition: 0.15s ease-in-out;
-
 }
+
 
 .search_result__container:hover {
   background: darken($secondary, 20%);

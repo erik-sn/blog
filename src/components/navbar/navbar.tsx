@@ -52,18 +52,6 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
     this.toggleSearch = this.toggleSearch.bind(this);
   }
 
-  public componentDidMount(): void {
-    const container = document.getElementById('application__container');
-    container.addEventListener('scroll', () => {
-      const minimize = this.state.minimize;
-      if (container.scrollTop > 40 && !minimize) {
-        this.setState({ minimize: true });
-      } else if (container.scrollTop <= 40 && minimize) {
-        this.setState({ minimize: false });
-      }
-    });
-  }
-
   public render(): JSX.Element {
     const { minimize } = this.state;
     const { route, user, searchActive } = this.props;
@@ -93,6 +81,17 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
         />
       </nav>
     );
+  }
+
+  private componentDidMount(): void {
+    window.addEventListener('scroll', () => {
+      const minimize = this.state.minimize;
+      if (window.scrollY > 40 && !minimize) {
+        this.setState({ minimize: true });
+      } else if (window.scrollY <= 40 && minimize) {
+        this.setState({ minimize: false });
+      }
+    });
   }
 
   private toggleSearch(): void {

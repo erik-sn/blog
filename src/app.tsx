@@ -6,6 +6,7 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import * as promise from 'redux-promise';
 
 import Application from './components/application';
+import ScrollToTop from './components/scrolltotop';
 import ConnectedRouter from './connected_router';
 import { IReduxState } from './constants/interfaces';
 import AuthMiddleware from './middleware/auth_middleware';
@@ -54,9 +55,11 @@ if (process.env.NODE_ENV === 'production') {
 
 const App = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history} >
-      <Application />
-    </ConnectedRouter>
+    <ScrollToTop>
+      <ConnectedRouter history={history} >
+        <Application />
+      </ConnectedRouter>
+    </ScrollToTop>
   </Provider>
 );
 

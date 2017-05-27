@@ -8,7 +8,6 @@ body {
   background: $secondary;
   min-width: 300px;
   z-index: 1;
-  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -18,15 +17,13 @@ a {
 
 #application__container {
   width: 100%;
-  height: calc(100vh - 40px);
-  margin-top: 40px;
-  overflow-y: auto;
 }
 
 #application__child-container {
   font-family: 'Roboto', sans-serif;
   z-index: 1;
   width: 100%;
+  margin-top: 40px;
 
   display: flex;
   align-items: center;
@@ -53,7 +50,7 @@ a {
     code {
       padding: 2px 4px;
       background: darken(whitesmoke, 5%);
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
   }
 

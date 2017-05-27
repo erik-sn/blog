@@ -20,6 +20,11 @@ const Contact = (): JSX.Element => (
         </a>
       </div>
       <div className="social_sidebar__link">
+        <a href="https://stackoverflow.com/users/4396787/erik-sn">
+          <img width="45px" src="https://maxcdn.icons8.com/Share/icon/Logos//stackoverflow1600.png" />
+        </a>
+      </div>
+      <div className="social_sidebar__link">
         <a href="http://codepen.io/erik-sn/">
           <img width="45px" src="https://res.cloudinary.com/dvr87tqip/image/upload/v1490075088/codepen_lx96w4.png" />
         </a>
