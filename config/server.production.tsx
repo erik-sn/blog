@@ -113,9 +113,21 @@ function renderFullPage(html: string, initialStore: Store<any>) {
   return `
     <!doctype html>
     <html>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
       <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Articles & Thoughts on programming, software and engineering">
+        <meta name="keywords" content="programming software javascript python java react">
+        <meta property="og:title" content="Dev Sandbox"/>
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dvr87tqip/image/upload/v1461600642/me_coz7xt.png"
+        />
+        <meta property="og:url" content="https://devsandbox.io" /><meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="https://devsandbox.io">
+        <meta name="twitter:title" content="Dev Sandbox">
+        <meta name="twitter:description" content="Articles & Thoughts on programming, software and engineering">
+        <meta name="twitter:image" content="https://res.cloudinary.com/dvr87tqip/image/upload/v1461600642/me_coz7xt.png">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -127,6 +139,8 @@ function renderFullPage(html: string, initialStore: Store<any>) {
 
         </script>
         <title>Dev Sandbox</title>
+        <link rel="author" href="https://github.com/erik-sn/" />
+        <link rel="canonical" href="http://devsandbox.io/" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/solarized-light.min.css">
         <link rel="icon" href="https://res.cloudinary.com/dvr87tqip/image/upload/v1492291999/sandbox_xb9z2t.png" type="image/x-icon" />
@@ -145,6 +159,7 @@ function renderFullPage(html: string, initialStore: Store<any>) {
           background-position-y: calc(100vh - 650px);
           background-position-x: 10vw;
           background-repeat: no-repeat;
+          background-attachment: fixed;
         }
       </style>
       <script>
